@@ -1,652 +1,653 @@
-<!DOCTYPE html><script>
-document.addEventListener('DOMContentLoaded', () => {
-    
-    // speed = 150ms par lettre (au lieu de 100)
-    // delay = 3000ms (3 secondes de pause une fois écrit)
-    function typeEffect(elementId, text, speed = 150, delay = 3000) {
-        const element = document.getElementById(elementId);
-        if (!element) return;
-
-        let isDeleting = false;
-        let charIndex = 0;
-
-        function type() {
-            if (isDeleting) {
-                // Effacement un peu plus rapide que l'écriture (speed / 1.5)
-                element.textContent = text.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                element.textContent = text.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            let typeSpeed = speed;
-
-            if (!isDeleting && charIndex === text.length) {
-                isDeleting = true;
-                typeSpeed = delay; // Pause de 3s quand le texte est complet
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                typeSpeed = 800; // Pause avant de recommencer à écrire
-            }
-
-            // Si on efface, on va un peu plus vite pour ne pas lasser l'utilisateur
-            const finalSpeed = isDeleting ? speed / 2 : typeSpeed;
-            setTimeout(type, finalSpeed);
-        }
-        type();
-    }
-
-    // Lancement avec des délais de départ plus longs pour bien décomposer
-    typeEffect('typewriter-name', 'KASSAI Christian');
-    
-    // La deuxième ligne commence après 2 secondes
-    setTimeout(() => typeEffect('typewriter-status', 'Apprenti Systèmes & Réseaux'), 2000);
-    
-    // La troisième ligne commence après 4 secondes
-    setTimeout(() => typeEffect('typewriter-location', 'France (BTS SIO 2025 - 2027)'), 4000);
-});
-</script>
+<!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KASSAI Christian | Portfolio SISR</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'JetBrains Mono', monospace; }
-        .typewriter::after { content: "|"; animation: blink 1s infinite; }
-        @keyframes blink { 50% { opacity: 0; } }
-        .neon-green { box-shadow: 0 0 15px rgba(34, 197, 94, 0.2); }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KASSAI Christian | Portfolio SISR</title>
+<meta name="description" content="Portfolio de KASSAI Christian, apprenti BTS SIO option SISR — administration systèmes, réseaux et sécurité des infrastructures.">
+<meta name="theme-color" content="#0B0D10">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230B0D10'/%3E%3Ctext x='50%25' y='58%25' font-family='monospace' font-size='46' font-weight='700' fill='%234CC9B0' text-anchor='middle'%3E&gt;_%3C/text%3E%3C/svg%3E">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="KASSAI Christian | Portfolio SISR">
+<meta property="og:description" content="Apprenti systèmes &amp; réseaux — BTS SIO SISR. Projets, certifications et veille technologique.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="KASSAI Christian | Portfolio SISR">
+<meta name="twitter:description" content="Apprenti systèmes &amp; réseaux — BTS SIO SISR. Projets, certifications et veille technologique.">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          base: '#0B0D10',
+          panel: '#12151A',
+          panel2: '#171B21',
+          accent: '#4CC9B0',
+          accentDim: '#2E5850',
+          warn: '#E8A33D',
+          ink: '#E7EAEE',
+          muted: '#7C8791',
+          hairline: '#232830',
+        },
+        fontFamily: {
+          sans: ['"Space Grotesk"', 'ui-sans-serif', 'system-ui'],
+          mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  html { background: #0B0D10; }
+  body {
+    background-color: #0B0D10;
+    background-image:
+      linear-gradient(rgba(76,201,176,0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(76,201,176,0.045) 1px, transparent 1px);
+    background-size: 42px 42px;
+  }
+  .caret::after {
+    content: "";
+    display: inline-block;
+    width: 0.55ch;
+    height: 1em;
+    background: #4CC9B0;
+    margin-left: 2px;
+    vertical-align: -0.15em;
+    animation: blink 1s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+  [data-navlink].nav-active { color: #4CC9B0; }
+
+  .section-flash { position: relative; }
+  .section-flash::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(76,201,176,0.10), rgba(76,201,176,0) 65%);
+    pointer-events: none;
+    animation: sectionFlash 0.9s ease forwards;
+  }
+  @keyframes sectionFlash { from { opacity: 1; } to { opacity: 0; } }
+
+  a, button { -webkit-tap-highlight-color: transparent; }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid #4CC9B0;
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { transition: none; opacity: 1; transform: none; }
+    .caret::after { animation: none; opacity: 1; }
+    .section-flash::after { animation: none; display: none; }
+  }
+</style>
 </head>
-<canvas id="matrix" class="fixed top-0 left-0 -z-10 opacity-20"></canvas>
+<body class="bg-base text-ink font-sans antialiased">
 
-<script>
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('opacity-100', 'translate-y-0');
-            entry.target.classList.remove('opacity-0', 'translate-y-10');
-        }
-    });
-});
+<a href="#presentation" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-accent focus:text-base focus:px-4 focus:py-2 focus:rounded-sm focus:font-mono focus:text-sm">
+  Aller au contenu
+</a>
 
-// On cible toutes les sections
-document.querySelectorAll('section').forEach((section) => {
-    section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
-    observer.observe(section);
-});
-</script><script>
-const canvas = document.getElementById('matrix');
-const ctx = canvas.getContext('2d');
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-const letters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const fontSize = 16;
-const columns = canvas.width / fontSize;
-const drops = Array(Math.floor(columns)).fill(1);
-
-function draw() {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "#0F0"; // Vert Matrix
-    ctx.font = fontSize + "px monospace";
-
-    drops.forEach((y, i) => {
-        const text = letters[Math.floor(Math.random() * letters.length)];
-        ctx.fillText(text, i * fontSize, y * fontSize);
-        if (y * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-        drops[i]++;
-    });
-}
-setInterval(draw, 33);
-</script><script>
-        // 1. On crée l'observateur
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    // Quand la section est visible : on l'affiche
-                    entry.target.classList.add('opacity-100', 'translate-y-0');
-                    entry.target.classList.remove('opacity-0', 'translate-y-10');
-                }
-            });
-        }, { threshold: 0.1 }); // Se déclenche quand 10% de la section est visible
-
-        // 2. On prépare les sections et on les observe
-        document.querySelectorAll('section').forEach((section) => {
-            // On cache les sections par défaut avec Tailwind
-            section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
-            observer.observe(section);
-        });
-    </script>
-<script>
-document.querySelectorAll('.btn-magic').forEach(btn => {
-    btn.addEventListener('mousemove', (e) => {
-        const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-    });
-    btn.addEventListener('mouseleave', () => {
-        btn.style.transform = `translate(0px, 0px)`;
-    });
-});
-</script></body>
-</html><script>
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('opacity-100', 'translate-y-0');
-            entry.target.classList.remove('opacity-0', 'translate-y-10');
-        }
-    });
-});
-
-// On cible toutes les sections
-document.querySelectorAll('section').forEach((section) => {
-    section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
-    observer.observe(section);
-});
-</script><body class="bg-black text-green-500">
-
- <nav class="fixed top-0 left-0 w-full z-50 bg-black/95 border-b border-green-900/50 px-6 py-4">
-    <div class="max-w-6xl mx-auto flex justify-between items-center">
-        
-        <span class="font-bold text-xl tracking-tighter text-white font-mono">
-            C_KASSAI<span class="text-green-500">.SISR</span>
-        </span>
-
-        <div class="hidden md:flex items-center space-x-6 font-mono text-base">
-            <a href="#accueil" class="hover:text-white text-gray-300 transition">Accueil</a>
-            <a href="#presentation" class="hover:text-white text-gray-300 transition">Moi</a>
-            <a href="#skills" class="hover:text-white text-gray-300 transition">Capacités</a>
-            <a href="#projets" class="hover:text-white text-gray-300 transition">Projets</a>
-            <a href="#certifications" class="hover:text-white text-gray-300 transition">Certifications</a>
-            <a href="#veille" class="hover:text-white text-gray-300 transition">Veille Tech</a>
-            <a href="#contact" class="ml-4 text-black bg-green-500 hover:bg-green-400 px-4 py-2 font-bold rounded transition">
-                Contact
-            </a>
-
+<div class="fixed top-0 left-0 w-full h-[3px] z-[60] bg-hairline/40">
+  <div id="scroll-progress" class="h-full bg-accent" style="width:0%"></div>
 </div>
+
+<!-- NAV -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-base/90 backdrop-blur border-b border-hairline">
+  <div class="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
+    <a href="#accueil" class="font-mono text-sm text-ink tracking-tight">
+      kassai<span class="text-accent">@</span>sisr
+    </a>
+    <div class="hidden md:flex items-center gap-7 text-sm text-muted font-mono">
+      <a href="#presentation" data-navlink class="hover:text-ink transition-colors">présentation</a>
+      <a href="#skills" data-navlink class="hover:text-ink transition-colors">compétences</a>
+      <a href="#experience" data-navlink class="hover:text-ink transition-colors">expérience</a>
+      <a href="#projets" data-navlink class="hover:text-ink transition-colors">projets</a>
+      <a href="#certifications" data-navlink class="hover:text-ink transition-colors">certifications</a>
+      <a href="#veille" data-navlink class="hover:text-ink transition-colors">veille</a>
+      <a href="#contact" class="ml-2 text-base bg-accent hover:bg-accent/90 px-4 py-1.5 rounded-sm font-medium transition-colors">
+        contact
+      </a>
+    </div>
+    <a href="#contact" class="md:hidden text-base bg-accent px-3 py-1.5 rounded-sm text-sm font-mono">contact</a>
+  </div>
 </nav>
 
-    <section id="accueil" class="h-screen flex flex-col justify-center items-center px-4">
-        <div class="border border-green-500/50 p-10 md:p-20 text-center rounded-sm bg-green-500/5 neon-green">
-            <h1 class="text-5xl md:text-7xl font-black mb-6 uppercase tracking-tight text-white">
-                KASSAI <span class="text-green-500">Christian</span>
-            </h1>
-            <div class="text-lg md:text-2xl h-8 font-bold">
-                <span id="typewriter" class="typewriter bg-green-900/20 px-2"></span>
-            </div>
-        </div>
-    </section>
-
-    <section id="presentation" class="py-24 max-w-5xl mx-auto px-6">
-        <h2 class="text-3xl font-bold mb-10 text-white border-l-4 border-green-500 pl-4">01. PRÉSENTATION</h2>
-        <div class="grid md:grid-cols-2 gap-12 items-start">
-            <div class="space-y-6">
-                <p class="text-lg leading-relaxed text-gray-300">
-                    Je suis <span class="text-green-500 font-bold">KASSAI Christian</span>, étudiant apprenti en BTS SIO option SISR
-                    <p class="text-gray-300 leading-relaxed">
-    Étudiant en <span class="text-white underline decoration-green-500 underline-offset-4">BTS SIO option SISR</span> 
-    à l'école <span class="text-white font-bold">YNOV CAMPUS</span>. 
-    Futur administrateur systèmes et réseaux, passionné par la sécurité des infrastructures et l'optimisation des environnements virtualisés, je mets mes compétences techniques au service de la performance informatique. Découvrez ici mes projets réalisés et mon parcours en apprentissage
-    <br><br>
-    Vous retrouverez ci-dessous mon CV ainsi que mes différents projets.
-</p> 
-                </p>
-                <p class="text-green-800">
-                    Mon parcours est orienté vers la gestion des infrastructures, le déploiement de serveurs et la sécurité réseau.
-                </p>
-                <div class="space-y-4 pt-4">
-                    <h3 class="text-white uppercase text-sm font-bold">Mes caractéristiques :</h3>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-zinc-900 p-3 border border-green-900 rounded">
-                            <span class="text-white block">RIGOUREUX</span>
-                            <span class="text-[10px] uppercase">Précision technique</span>
-                        </div>
-                        <div class="bg-zinc-900 p-3 border border-green-900 rounded">
-                            <span class="text-white block">RÉACTIF</span>
-                            <span class="text-[10px] uppercase">Gestion d'incidents</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="font-mono bg-black p-6 rounded-lg border border-green-900 shadow-2xl">
-    <div class="mb-2">
-        <span class="text-green-500">root@kassai:~$</span> 
-        <span class="text-white" id="typewriter-name"></span><span class="animate-pulse text-green-500">|</span>
+<!-- HERO -->
+<section id="accueil" class="min-h-screen flex flex-col justify-center px-6 pt-20">
+  <div class="max-w-4xl mx-auto w-full">
+    <div class="border border-hairline bg-panel/60 rounded-sm overflow-hidden">
+      <div class="flex items-center flex-wrap gap-1.5 px-4 py-2.5 border-b border-hairline bg-panel2">
+        <span class="w-2.5 h-2.5 rounded-full bg-hairline"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-hairline"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-hairline"></span>
+        <span class="ml-3 text-xs text-muted font-mono">session — kassai@ynov</span>
+        <span class="ml-auto flex items-center gap-1.5 pr-1">
+          <span class="relative flex w-2 h-2">
+            <span class="absolute inline-flex h-full w-full rounded-full bg-accent opacity-75 animate-ping"></span>
+            <span class="relative inline-flex rounded-full w-2 h-2 bg-accent"></span>
+          </span>
+          <span class="text-[10px] font-mono text-accent/80">en ligne</span>
+        </span>
+      </div>
+      <div class="p-6 md:p-10 font-mono text-sm md:text-base leading-relaxed">
+        <p><span class="text-accent">$</span> whoami</p>
+        <p id="boot-name" class="text-ink font-semibold text-2xl md:text-4xl mt-1 mb-4"></p>
+        <p><span class="text-accent">$</span> cat statut.txt</p>
+        <p id="boot-role" class="text-muted mt-1 mb-4"></p>
+        <p><span class="text-accent">$</span> cat localisation.txt</p>
+        <p id="boot-loc" class="text-muted mt-1 mb-4"></p>
+        <p class="text-accent">$ <span id="boot-live" class="caret"></span></p>
+      </div>
     </div>
-    <div class="mb-2">
-        <span class="text-green-500">root@kassai:~$</span> 
-        <span class="text-white" id="typewriter-status"></span>
-    </div>
-    <div>
-        <span class="text-green-500">root@kassai:~$</span> 
-        <span class="text-white" id="typewriter-location"></span>
-    </div>
-</div>
-        </div>
-    </section>
-    <section id="cv" class="py-12 px-6">
-    <div class="max-w-4xl mx-auto">
-        <div class="bg-zinc-900 border border-green-900 p-8 rounded-lg flex flex-col md:flex-row items-center justify-between gap-6 hover:shadow-[0_0_20px_rgba(34,197,94,0.15)] transition-shadow">
-            
-            <div class="text-center md:text-left">
-                <h2 class="text-2xl font-bold text-white mb-2 uppercase tracking-tighter">Mon Curriculum Vitae</h2>
-                <p class="text-green-800 text-sm font-mono">Format : PDF</p>
-            </div>
-
-            <a href="cv_kassai_christian.pdf.pdf" download="cv_kassai_Christian.pdf" target="_blank">
-   Télécharger mon CV
-</a>
-            </a>
-        </div>
-    </div>
+    <p class="text-muted text-sm mt-6 max-w-lg">
+      Futur administrateur systèmes &amp; réseaux — j'aime les infrastructures qui tiennent la route et les incidents résolus avant qu'on les remarque.
+    </p>
+  </div>
 </section>
 
-    <section id="skills" class="py-24 bg-zinc-950 px-6 border-y border-green-900">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-3xl font-bold mb-16 text-center text-white">02. CAPACITÉS & SKILLS</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div class="space-y-6">
-                    <div>
-                        <div class="flex justify-between mb-1"><span class="text-white text-sm">RESEAUX (ETHERNET,VLAN)</span><span>90%</span></div>
-                        <div class="w-full bg-green-900/20 h-2"><div class="bg-green-500 h-full w-[90%]"></div></div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between mb-1"><span class="text-white text-sm">WINDOWS SERVER (AZURE)</span><span>85%</span></div>
-                        <div class="w-full bg-green-900/20 h-2"><div class="bg-green-500 h-full w-[85%]"></div></div>
-                    </div>
-                </div>
-                <div class="space-y-6">
-                    <div>
-                        <div class="flex justify-between mb-1"><span class="text-white text-sm">VIRTUALISATION (VMware)</span><span>50%</span></div>
-                        <div class="w-full bg-green-900/20 h-2"><div class="bg-green-500 h-full w-[80%]"></div></div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between mb-1"><span class="text-white text-sm">LINUX (Administration CLI)</span><span>60%</span></div>
-                        <div class="w-full bg-green-900/20 h-2"><div class="bg-green-500 h-full w-[75%]"></div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section><!-- SECTION ALTERNANCE / EXPÉRIENCE PROFESSIONNELLE -->
-<section id="alternance" class="py-16 max-w-6xl mx-auto px-6 border-t border-green-900/50">
-    
-    <h2 class="text-3xl font-bold mb-8 text-white border-l-4 border-green-500 pl-4 uppercase tracking-tighter">
-        03. EXPÉRIENCE_PROFESSIONNELLE
-    </h2>
+<script>
+(function () {
+  function typeLine(id, text, speed, done) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.classList.add('caret');
+    var i = 0;
+    (function step() {
+      el.textContent = text.slice(0, i);
+      i++;
+      if (i <= text.length) {
+        setTimeout(step, speed);
+      } else {
+        el.classList.remove('caret');
+        if (done) done();
+      }
+    })();
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    typeLine('boot-name', 'KASSAI Christian', 45, function () {
+      typeLine('boot-role', 'Apprenti Systèmes & Réseaux — BTS SIO SISR', 25, function () {
+        typeLine('boot-loc', 'France · Ynov Campus · 2025 – 2027', 25);
+      });
+    });
+  });
+})();
+</script>
 
-    <div class="border border-green-900 p-6 bg-black/40 hover:border-green-500 transition">
-        
-        <!-- EN-TÊTE : POSTE & ENTREPRISE -->
-        <div class="flex flex-col md:flex-row md:items-center justify-between pb-4 mb-4 border-b border-green-900/40">
-            <div>
-                <span class="text-xs font-mono bg-green-950 text-green-400 px-2.5 py-1 border border-green-800 uppercase">
-                    Alternance Actuelle
-                </span>
-                <h3 class="text-xl font-bold text-white mt-2">Technicien Support IT</h3>
-                <p class="text-green-500 font-mono text-sm">@ Worldline</p>
-            </div>
-            <div class="mt-2 md:mt-0 text-left md:text-right font-mono text-xs text-gray-400">
-                <p>📍 Île-de-France</p>
-                <p>🗓️ En cours (2025 - Présent)</p>
-            </div>
+<!-- PRESENTATION -->
+<section id="presentation" class="py-24 max-w-5xl mx-auto px-6 reveal">
+  <h2 class="text-2xl md:text-3xl font-semibold mb-10 text-ink">Présentation</h2>
+  <div class="grid md:grid-cols-5 gap-12 items-start">
+    <div class="md:col-span-3 space-y-5">
+      <p class="text-lg leading-relaxed text-ink/90">
+        Je suis <span class="text-accent font-medium">KASSAI Christian</span>, étudiant apprenti en BTS SIO option SISR à l'école <span class="text-ink font-medium">YNOV Campus</span>.
+      </p>
+      <p class="text-muted leading-relaxed">
+        Futur administrateur systèmes et réseaux, passionné par la sécurité des infrastructures et l'optimisation des environnements virtualisés, je mets mes compétences techniques au service de la performance informatique.
+      </p>
+      <p class="text-muted leading-relaxed">
+        Mon parcours est orienté vers la gestion des infrastructures, le déploiement de serveurs et la sécurité réseau. Vous trouverez ci-dessous mon CV ainsi que mes projets et réalisations.
+      </p>
+      <div class="grid grid-cols-2 gap-4 pt-4">
+        <div class="bg-panel border border-hairline rounded-sm p-4">
+          <span class="text-ink font-medium block mb-1">Rigoureux</span>
+          <span class="text-xs text-muted">Précision technique</span>
         </div>
-
-        <!-- DESCRIPTION DES MISSIONS -->
-        <div class="space-y-3 text-sm text-gray-300 mb-6">
-            <p class="font-mono text-xs text-gray-400 mb-2">// MISSIONS_&_RESPONSABILITÉS :</p>
-            <ul class="list-disc list-inside space-y-2 text-gray-300">
-                <li><strong class="text-white">Support N1/N2 :</strong> Prise en charge, diagnostic et résolution des incidents matériels et logiciels pour les collaborateurs.</li>
-                <li><strong class="text-white">Gestion du Parc Informatique :</strong> Masterisation, déploiement, configuration et maintenance des postes de travail et équipements.</li>
-                <li><strong class="text-white">Administration Active Directory / Annuaire :</strong> Gestion des comptes utilisateurs, attribution des droits et gestion des accès sécurisés.</li>
-                <li><strong class="text-white">Assistance Réseau & Périphériques :</strong> Dépannage de premier niveau sur les réseaux locaux (LAN/Wi-Fi), imprimantes et téléphonie IP.</li>
-            </ul>
+        <div class="bg-panel border border-hairline rounded-sm p-4">
+          <span class="text-ink font-medium block mb-1">Réactif</span>
+          <span class="text-xs text-muted">Gestion d'incidents</span>
         </div>
-
-        <!-- TECHNOLOGIES / ENVIRONNEMENT TECHNIQUE -->
-        <div class="pt-4 border-t border-green-900/40 flex flex-wrap items-center gap-2 font-mono text-xs">
-            <span class="text-gray-500 mr-2">Environnement :</span>
-            <span class="bg-black border border-green-900 text-green-400 px-2 py-0.5">Active Directory</span>
-            <span class="bg-black border border-green-900 text-green-400 px-2 py-0.5">Ticketing / Helpdesk</span>
-            <span class="bg-black border border-green-900 text-green-400 px-2 py-0.5">Windows 10/11</span>
-            <span class="bg-black border border-green-900 text-green-400 px-2 py-0.5">Réseau LAN/Wi-Fi</span>
-            <span class="bg-black border border-green-900 text-green-400 px-2 py-0.5">Masterisation / Master Image</span>
-        </div>
-
+      </div>
     </div>
+    <div class="md:col-span-2 bg-panel border border-hairline rounded-sm p-6">
+      <p class="text-xs font-mono text-muted mb-3">profil.yml</p>
+      <dl class="font-mono text-sm space-y-3">
+        <div class="flex justify-between gap-4 border-b border-hairline pb-2">
+          <dt class="text-muted">formation</dt><dd class="text-ink text-right">BTS SIO · SISR</dd>
+        </div>
+        <div class="flex justify-between gap-4 border-b border-hairline pb-2">
+          <dt class="text-muted">école</dt><dd class="text-ink text-right">Ynov Campus</dd>
+        </div>
+        <div class="flex justify-between gap-4 border-b border-hairline pb-2">
+          <dt class="text-muted">alternance</dt><dd class="text-ink text-right">Worldline</dd>
+        </div>
+        <div class="flex justify-between gap-4">
+          <dt class="text-muted">période</dt><dd class="text-ink text-right">2025 – 2027</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
 </section>
 
-    <section id="projets" class="py-24 max-w-6xl mx-auto px-6">
-        <h2 class="text-3xl font-bold mb-12 text-white">04. PROJETS RÉALISÉS</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="group border border-green-900 p-8 hover:bg-green-500/5 transition relative overflow-hidden">
-                <div class="absolute -right-4 -bottom-4 text-green-900/20 text-7xl font-bold">01</div>
-                <h3 class="text-xl font-bold text-white mb-2">PROJET GSB</h3>
-                <p class="text-sm text-green-800 mb-4 italic">Segmentation réseau et sécurité.</p>
-                <p class="text-gray-400 text-sm">Mise en œuvre d'une architecture réseau complète avec gestion des flux inter-VLAN et sécurité des accès.</p>
-            </div>
-            <div class="group border border-green-900 p-8 hover:bg-green-500/5 transition relative overflow-hidden">
-                <div class="absolute -right-4 -bottom-4 text-green-900/20 text-7xl font-bold">02</div>
-                <h3 class="text-xl font-bold text-white mb-2">SUPERVISION WLSD SUPPORT</h3>
-                <p class="text-sm text-green-800 mb-4 italic">Gestion de Ticket WLSD.</p>
-                <p class="text-gray-400 text-sm">Gestion de ticket et support WLSD avec l'entreprise WORLDLINE.</p>
-            </div>
-        </div>
-   <section id="projets" class="py-24 max-w-6xl mx-auto px-6">
-    <h2 class="text-3xl font-bold mb-12 text-white border-l-4 border-green-500 pl-4 uppercase tracking-tighter">
-        04. REALISATIONS TECHNIQUES
-    </h2>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        
-        <div class="group border border-green-900 p-8 hover:bg-green-500/5 transition relative overflow-hidden flex flex-col justify-between h-full">
-            <div class="absolute -right-4 -bottom-4 text-green-900/20 text-7xl font-bold">01</div>
-            <div>
-                <h3 class="text-xl font-bold text-white mb-2">ADMINISTRATION LINUX</h3>
-                <p class="text-xs text-green-500 mb-4 font-mono">[Gestion Utilisateurs & Droits]</p>
-                <p class="text-gray-400 text-sm mb-6 italic leading-relaxed">
-                    Maîtrise de la gestion des identités et des permissions avancées (ACL, SetGID, Sudoers) sur Debian.
-                </p>
-                <div class="space-y-2 mb-6">
-                    <a href="TP_Complet_Linux_Gestion_Utilisateurs_Groupes.pdf" target="_blank" class="flex items-center gap-2 text-[10px] text-white hover:text-green-500 transition border-b border-green-900 pb-1 w-fit">
-                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"></path></svg>
-                        TP_Gestion_Utilisateurs.pdf
-                    </a>
-                    <a href="TP_Gestion_Fichiers_Linux_NF.pdf" target="_blank" class="flex items-center gap-2 text-[10px] text-white hover:text-green-500 transition border-b border-green-900 pb-1 w-fit">
-                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"></path></svg>
-                        TP_Gestion_Fichiers.pdf
-                    </a>
-                </div>
-            </div>
-            <div class="text-[10px] text-green-800 uppercase font-bold tracking-widest border-t border-green-900 pt-4">
-                Technos : Bash, ACL, Sudo
-            </div>
-        </div>
-
-        <div class="group border border-green-900 p-8 hover:bg-green-500/5 transition relative overflow-hidden flex flex-col justify-between h-full">
-            <div class="absolute -right-4 -bottom-4 text-green-900/20 text-7xl font-bold">02</div>
-            <div>
-                <h3 class="text-xl font-bold text-white mb-2">INFRASTRUCTURE WEB & DNS</h3>
-                <p class="text-xs text-green-500 mb-4 font-mono">[Bind9 / Apache2]</p>
-                <p class="text-gray-400 text-sm mb-6 italic leading-relaxed">
-                    Mise en place d'un service DNS faisant autorité et configuration d'un serveur web HTTP.
-                </p>
-                <a href="TP_DNS_Apache2_BTS_SIO1_Complet.pdf" target="_blank" class="flex items-center gap-2 text-[10px] text-white hover:text-green-500 transition border-b border-green-900 pb-1 w-fit mb-6">
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"></path></svg>
-                    TP_DNS_Apache2.pdf
-                </a>
-            </div>
-            <div class="text-[10px] text-green-800 uppercase font-bold tracking-widest border-t border-green-900 pt-4">
-                Technos : DNS Bind9, Apache2
-            </div>
-        </div>
-
-        <div class="group border border-green-900 p-8 hover:bg-green-500/5 transition relative overflow-hidden flex flex-col justify-between h-full">
-            <div class="absolute -right-4 -bottom-4 text-green-900/20 text-7xl font-bold">03</div>
-            <div>
-                <h3 class="text-xl font-bold text-white mb-2">REPARTITION DE CHARGE</h3>
-                <p class="text-xs text-green-500 mb-4 font-mono">[HAProxy / Haute Disponibilité]</p>
-                <p class="text-gray-400 text-sm mb-6 italic leading-relaxed">
-                    Configuration d'un load-balancer pour distribuer le trafic entre plusieurs serveurs applicatifs.
-                </p>
-                <a href="TP_Linux_loadbalancer.pdf" target="_blank" class="flex items-center gap-2 text-[10px] text-white hover:text-green-500 transition border-b border-green-900 pb-1 w-fit mb-6">
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"></path></svg>
-                    TP_Loadbalancer_HAProxy.pdf
-                </a>
-            </div>
-            <div class="text-[10px] text-green-800 uppercase font-bold tracking-widest border-t border-green-900 pt-4">
-                Technos : HAProxy, RoundRobin
-            </div>
-        </div>
-
+<!-- CV -->
+<section id="cv" class="px-6 reveal">
+  <div class="max-w-5xl mx-auto">
+    <div class="bg-panel border border-hairline rounded-sm p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="text-center md:text-left">
+        <h2 class="text-xl font-semibold text-ink mb-1">Curriculum vitae</h2>
+        <p class="text-muted text-sm font-mono">Format PDF</p>
+      </div>
+      <a href="cv_kassai_christian.pdf.pdf" download="cv_kassai_Christian.pdf" target="_blank"
+         class="inline-flex items-center gap-2 bg-accent text-base font-medium px-5 py-2.5 rounded-sm hover:bg-accent/90 transition-colors">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg>
+        Télécharger le CV
+      </a>
     </div>
-</section>>
-<!-- SECTION CERTIFICATIONS -->
-<section id="certifications" class="py-16 max-w-6xl mx-auto px-6 border-t border-green-900/50">
-    <h2 class="text-3xl font-bold mb-8 text-white border-l-4 border-green-500 pl-4 uppercase tracking-tighter">
-        06. CERTIFICATIONS 
-    </h2>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
-        <!-- ATTESTATION 1 -->
-        <div class="border border-green-900 p-6 bg-black/40 hover:border-green-500 transition flex flex-col justify-between">
-            <div>
-                <div class="flex justify-between items-start mb-3">
-                    <span class="text-xs font-mono bg-green-950 text-green-400 px-2 py-0.5 border border-green-800">CNIL</span>
-                    <span class="text-xs font-mono text-gray-500">Module 1</span>
-                </div>
-                <h3 class="text-lg font-bold text-white mb-2">Atelier RGPD — Notions Clés</h3>
-                <p class="text-gray-400 text-sm mb-4">
-                    Compréhension des principes fondamentaux du RGPD, des données à caractère personnel et des organismes concernés.
-                </p>
-            </div>
-            
-            <div class="flex items-center gap-3 pt-3 border-t border-green-900/40 font-mono text-xs">
-                <!-- Remplace par le nom exact de ton fichier -->
-                <a href="attestation-rgpd-1.pdf" target="_blank" class="text-green-400 hover:text-green-300 underline">
-                    📄 Voir
-                </a>
-                <span class="text-gray-600">|</span>
-                <a href="attestation-rgpd-1.pdf" download="Attestation_RGPD_Module1_KASSAI.pdf" class="text-gray-400 hover:text-white underline">
-                    💾 Télécharger
-                </a>
-            </div>
-        </div>
-
-        <!-- ATTESTATION 2 -->
-        <div class="border border-green-900 p-6 bg-black/40 hover:border-green-500 transition flex flex-col justify-between">
-            <div>
-                <div class="flex justify-between items-start mb-3">
-                    <span class="text-xs font-mono bg-green-950 text-green-400 px-2 py-0.5 border border-green-800">CNIL</span>
-                    <span class="text-xs font-mono text-gray-500">Module 2</span>
-                </div>
-                <h3 class="text-lg font-bold text-white mb-2">Atelier RGPD — Principes du Traitement</h3>
-                <p class="text-gray-400 text-sm mb-4">
-                    Règles d'or de la protection des données, licéité du traitement et gestion des droits des personnes.
-                </p>
-            </div>
-            
-            <div class="flex items-center gap-3 pt-3 border-t border-green-900/40 font-mono text-xs">
-                <!-- Remplace par le nom exact de ton fichier -->
-                <a href="attestation-rgpd-2.pdf" target="_blank" class="text-green-400 hover:text-green-300 underline">
-                    📄 Voir
-                </a>
-                <span class="text-gray-600">|</span>
-                <a href="attestation-rgpd-2.pdf" download="Attestation_RGPD_Module2_KASSAI.pdf" class="text-gray-400 hover:text-white underline">
-                    💾 Télécharger
-                </a>
-            </div>
-        </div>
-
-        <!-- ATTESTATION 3 -->
-        <div class="border border-green-900 p-6 bg-black/40 hover:border-green-500 transition flex flex-col justify-between">
-            <div>
-                <div class="flex justify-between items-start mb-3">
-                    <span class="text-xs font-mono bg-green-950 text-green-400 px-2 py-0.5 border border-green-800">CNIL</span>
-                    <span class="text-xs font-mono text-gray-500">Module 3</span>
-                </div>
-                <h3 class="text-lg font-bold text-white mb-2">Atelier RGPD — Sécurité des Données</h3>
-                <p class="text-gray-400 text-sm mb-4">
-                    Mesures de sécurité des systèmes d'information, gestion des violations de données et analyse d'impact (AIPD).
-                </p>
-            </div>
-            
-            <div class="flex items-center gap-3 pt-3 border-t border-green-900/40 font-mono text-xs">
-                <!-- Remplace par le nom exact de ton fichier -->
-                <a href="attestation-rgpd-3.pdf" target="_blank" class="text-green-400 hover:text-green-300 underline">
-                    📄 Voir
-                </a>
-                <span class="text-gray-600">|</span>
-                <a href="attestation-rgpd-3.pdf" download="Attestation_RGPD_Module3_KASSAI.pdf" class="text-gray-400 hover:text-white underline">
-                    💾 Télécharger
-                </a>
-            </div>
-        </div>
-
-    </div>
-</section> <!-- SECTION VEILLE TECHNOLOGIQUE -->
-<section id="veille" class="py-16 max-w-6xl mx-auto px-6 border-t border-green-900/50">
-    
-    <h2 class="text-3xl font-bold mb-8 text-white border-l-4 border-green-500 pl-4 uppercase tracking-tighter">
-        07. VEILLE TECHNOLOGIQUE
-    </h2>
-
-    <!-- PRESENTATION DE LA METHODOLOGIE -->
-    <div class="border border-green-900 p-6 bg-black/40 mb-8">
-        <h3 class="text-xl font-bold text-white mb-2">// MOTEURS DE RECHERCHE & SOURCES</h3>
-        <p class="text-gray-400 text-sm mb-4">
-            Suivi quotidien de l'évolution des menaces informatiques et des innovations en intelligence artificielle. Ma veille repose sur l'analyse des d'actualités spécialisées, de rapports de sécurité et de bulletins d'alerte officiels.
-        </p>
-        
-        <div class="flex flex-wrap gap-2 pt-2 border-t border-green-900/40">
-            <span class="text-xs font-mono bg-green-950 text-green-400 px-3 py-1 border border-green-800">Feedly</span>
-            <span class="text-xs font-mono bg-green-950 text-green-400 px-3 py-1 border border-green-800">CERT-FR (ANSSI)</span>
-            <span class="text-xs font-mono bg-green-950 text-green-400 px-3 py-1 border border-green-800">Presse spécialisée IT</span>
-        </div>
-    </div>
-
-    <!-- AXES DE VEILLE -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
-        <!-- AXE 1 : IA & MACHINE LEARNING -->
-        <div class="border border-green-900 p-6 bg-black/40 hover:border-green-500 transition flex flex-col justify-between">
-            <div>
-                <div class="flex justify-between items-start mb-3">
-                    <span class="text-xs font-mono text-green-500">// AXE_01</span>
-                    <span class="text-xs font-mono text-gray-500">IA & ML</span>
-                </div>
-                <h3 class="text-lg font-bold text-white mb-2">Intelligence Artificielle & Machine Learning</h3>
-                <p class="text-gray-400 text-sm mb-4">
-                    Analyse de l'intégration des modèles d'IA et de Machine Learning au sein des infrastructures système, de l'automatisation de l'administration et de leur rôle dans la détection d'anomalies.
-                </p>
-            </div>
-            
-            <div class="pt-3 border-t border-green-900/40 font-mono text-xs">
-                <p class="text-gray-500 mb-2">Flux de presse suivis :</p>
-                <div class="flex flex-wrap gap-3">
-                    <a href="https://www.usine-digitale.fr/intelligence-artificielle/" target="_blank" class="text-green-400 hover:underline">
-                        🔗 L'Usine Digitale (IA)
-                    </a>
-                    <a href="https://www.silicon.fr/intelligence-artificielle" target="_blank" class="text-green-400 hover:underline">
-                        🔗 Silicon.fr
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- AXE 2 : CYBERSÉCURITÉ (PHISHING, RANSOMWARE, RÉSEAU) -->
-        <div class="border border-green-900 p-6 bg-black/40 hover:border-green-500 transition flex flex-col justify-between">
-            <div>
-                <div class="flex justify-between items-start mb-3">
-                    <span class="text-xs font-mono text-green-500">// AXE_02</span>
-                    <span class="text-xs font-mono text-gray-500">SecOps</span>
-                </div>
-                <h3 class="text-lg font-bold text-white mb-2">Cybersécurité : Phishing, Ransomwares & Réseaux</h3>
-                <p class="text-gray-400 text-sm mb-4">
-                    Suivi de l'évolution des cyberattaques par hameçonnage (phishing), de la propagation des ransomwares et des méthodes de protection des architectures réseau et des flux informatiques.
-                </p>
-            </div>
-            
-            <div class="pt-3 border-t border-green-900/40 font-mono text-xs">
-                <p class="text-gray-500 mb-2">Flux de presse suivis :</p>
-                <div class="flex flex-wrap gap-3">
-                    <a href="https://www.cert.ssi.gouv.fr/" target="_blank" class="text-green-400 hover:underline">
-                        🔗 CERT-FR
-                    </a>
-                    <a href="https://www.lemondeinformatique.fr/actualites/lire-securite-118.html" target="_blank" class="text-green-400 hover:underline">
-                        🔗 Le Monde Informatique
-                    </a>
-                    <a href="https://www.it-connect.fr/" target="_blank" class="text-green-400 hover:underline">
-                        🔗 IT-Connect
-                    </a>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</section>
-          <h2 class="text-3xl font-bold mb-8 text-white border-l-4 border-green-500 pl-4 uppercase tracking-tighter">
-    0. COMMUNICATION (Contact)
-</h2>
-        
-        <div class="grid md:grid-cols-3 gap-8">
-            
-            <a href="mailto:christian.kassai@ynov.com" class="border border-green-900 p-6 rounded-lg bg-green-500/5 hover:border-green-500 hover:bg-green-500/10 transition-all group block">
-                <div class="text-green-500 mb-4 group-hover:scale-110 transition-transform">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                </div>
-                <h3 class="text-white font-bold mb-2 uppercase text-sm font-mono italic underline decoration-green-900">EMAIL</h3>
-                <p class="text-green-500 text-xs break-all">
-                    christian.kassai@ynov.com
-                </p>
-                <p class="text-[10px] text-green-900 mt-4 uppercase font-bold tracking-widest">>> Envoyer un mail</p>
-            </a>
-
-            <a href="tel:0619870275" class="border border-green-900 p-6 rounded-lg bg-green-500/5 hover:border-green-500 hover:bg-green-500/10 transition-all group block">
-                <div class="text-green-500 mb-4 group-hover:scale-110 transition-transform">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                </div>
-                <h3 class="text-white font-bold mb-2 uppercase text-sm font-mono italic underline decoration-green-900">TELEPHONE</h3>
-                <p class="text-green-500 text-sm">
-                    06 19 87 02 75
-                </p>
-                <p class="text-[10px] text-green-900 mt-4 uppercase font-bold tracking-widest">>> Appeler direct</p>
-            </a>
-
-            <a href="https://www.google.com/maps/search/?api=1&query=Ynov+Campus+19+rue+Haddock+Chessy" target="_blank" class="border border-green-900 p-6 rounded-lg bg-green-500/5 hover:border-green-500 hover:bg-green-500/10 transition-all group block">
-                <div class="text-green-500 mb-4 group-hover:scale-110 transition-transform">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                </div>
-                <h3 class="text-white font-bold mb-2 uppercase text-sm font-mono italic underline decoration-green-900">LOCALISATION</h3>
-                <p class="text-green-700 text-xs leading-relaxed">
-                    Ynov Campus<br>
-                    19 rue Haddock, Chessy
-                </p>
-                <p class="text-[10px] text-green-900 mt-4 uppercase font-bold tracking-widest">>> Ouvrir Maps</p>
-            </a>
-
-        </div>
-    </div>
+  </div>
 </section>
 
-    <footer class="py-10 text-center text-[10px] text-green-900 uppercase tracking-widest">
-        © 2026 KASSAI CHRISTIAN // BTS SIO SISR // MISSION RÉUSSIE
-    </footer>
+<!-- SKILLS -->
+<section id="skills" class="py-24 px-6 mt-8 border-y border-hairline bg-panel/30 reveal">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-2xl md:text-3xl font-semibold mb-4 text-ink">Compétences techniques</h2>
+    <p class="text-muted text-sm mb-12 max-w-lg">Niveau de maîtrise auto-évalué, mis à jour au fil des projets et de l'alternance.</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+      <div>
+        <div class="flex justify-between mb-2 font-mono text-sm">
+          <span class="text-ink">Réseaux (Ethernet, VLAN)</span><span class="text-accent">90%</span>
+        </div>
+        <div class="w-full bg-hairline h-1.5 rounded-full overflow-hidden"><div class="bg-accent h-full" style="width:90%"></div></div>
+      </div>
+      <div>
+        <div class="flex justify-between mb-2 font-mono text-sm">
+          <span class="text-ink">Windows Server (Azure)</span><span class="text-accent">85%</span>
+        </div>
+        <div class="w-full bg-hairline h-1.5 rounded-full overflow-hidden"><div class="bg-accent h-full" style="width:85%"></div></div>
+      </div>
+      <div>
+        <div class="flex justify-between mb-2 font-mono text-sm">
+          <span class="text-ink">Virtualisation (VMware)</span><span class="text-accent">50%</span>
+        </div>
+        <div class="w-full bg-hairline h-1.5 rounded-full overflow-hidden"><div class="bg-accent h-full" style="width:50%"></div></div>
+      </div>
+      <div>
+        <div class="flex justify-between mb-2 font-mono text-sm">
+          <span class="text-ink">Linux (Administration CLI)</span><span class="text-accent">60%</span>
+        </div>
+        <div class="w-full bg-hairline h-1.5 rounded-full overflow-hidden"><div class="bg-accent h-full" style="width:60%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        const textElement = document.getElementById('typewriter');
-        const text = "Je m'appel KASSAI Christian, je suis apprenti en SISR.";
-        let index = 0;
+<!-- EXPERIENCE -->
+<section id="experience" class="py-24 max-w-5xl mx-auto px-6 reveal">
+  <h2 class="text-2xl md:text-3xl font-semibold mb-10 text-ink">Expérience professionnelle</h2>
+  <div class="border border-hairline bg-panel rounded-sm p-6 md:p-8">
+    <div class="flex flex-col md:flex-row md:items-center justify-between pb-5 mb-5 border-b border-hairline gap-3">
+      <div>
+        <span class="text-xs font-mono bg-warn/10 text-warn px-2.5 py-1 rounded-sm border border-warn/30">
+          alternance en cours
+        </span>
+        <h3 class="text-lg font-semibold text-ink mt-3">Technicien Support IT</h3>
+        <p class="text-accent font-mono text-sm">@ Worldline</p>
+      </div>
+      <div class="md:text-right font-mono text-xs text-muted">
+        <p>Île-de-France</p>
+        <p>2025 — présent</p>
+      </div>
+    </div>
+    <div class="space-y-3 text-sm text-ink/85 mb-6">
+      <p class="font-mono text-xs text-muted mb-2">missions &amp; responsabilités</p>
+      <ul class="space-y-2.5">
+        <li class="flex gap-2.5"><span class="text-accent mt-1">›</span><span><strong class="text-ink font-medium">Support N1/N2 :</strong> prise en charge, diagnostic et résolution des incidents matériels et logiciels pour les collaborateurs.</span></li>
+        <li class="flex gap-2.5"><span class="text-accent mt-1">›</span><span><strong class="text-ink font-medium">Gestion du parc informatique :</strong> masterisation, déploiement, configuration et maintenance des postes et équipements.</span></li>
+        <li class="flex gap-2.5"><span class="text-accent mt-1">›</span><span><strong class="text-ink font-medium">Administration Active Directory :</strong> gestion des comptes, attribution des droits et des accès sécurisés.</span></li>
+        <li class="flex gap-2.5"><span class="text-accent mt-1">›</span><span><strong class="text-ink font-medium">Assistance réseau &amp; périphériques :</strong> dépannage LAN/Wi-Fi, imprimantes et téléphonie IP.</span></li>
+      </ul>
+    </div>
+    <div class="pt-4 border-t border-hairline flex flex-wrap gap-2 font-mono text-xs">
+      <span class="text-muted mr-1">Environnement :</span>
+      <span class="border border-hairline text-ink/80 px-2 py-0.5 rounded-sm">Active Directory</span>
+      <span class="border border-hairline text-ink/80 px-2 py-0.5 rounded-sm">Ticketing / Helpdesk</span>
+      <span class="border border-hairline text-ink/80 px-2 py-0.5 rounded-sm">Windows 10/11</span>
+      <span class="border border-hairline text-ink/80 px-2 py-0.5 rounded-sm">Réseau LAN/Wi-Fi</span>
+      <span class="border border-hairline text-ink/80 px-2 py-0.5 rounded-sm">Masterisation</span>
+    </div>
+  </div>
+</section>
 
-        function type() {
-            if (index < text.length) {
-                textElement.innerHTML += text.charAt(index);
-                index++;
-                setTimeout(type, 80);
-            } else {
-                setTimeout(() => {
-                    textElement.innerHTML = "";
-                    index = 0;
-                    type();
-                }, 3000);
-            }
-        }
-        type();
-    </script>
+<!-- PROJETS -->
+<section id="projets" class="py-24 max-w-6xl mx-auto px-6 reveal">
+  <h2 class="text-2xl md:text-3xl font-semibold mb-3 text-ink">Projets</h2>
+  <p class="text-muted text-sm mb-10">Projets menés en formation et en entreprise.</p>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+    <div class="border border-hairline bg-panel rounded-sm p-7 hover:border-accent/50 transition-colors">
+      <h3 class="text-lg font-semibold text-ink mb-1">Projet GSB</h3>
+      <p class="text-sm text-accent mb-3 font-mono">Segmentation réseau et sécurité</p>
+      <p class="text-muted text-sm leading-relaxed">Mise en œuvre d'une architecture réseau complète avec gestion des flux inter-VLAN et sécurité des accès.</p>
+    </div>
+    <div class="border border-hairline bg-panel rounded-sm p-7 hover:border-accent/50 transition-colors">
+      <h3 class="text-lg font-semibold text-ink mb-1">Supervision WLSD Support</h3>
+      <p class="text-sm text-accent mb-3 font-mono">Gestion de tickets WLSD</p>
+      <p class="text-muted text-sm leading-relaxed">Gestion de tickets et support WLSD avec l'entreprise Worldline.</p>
+    </div>
+  </div>
+
+  <h3 class="text-xl font-semibold mb-8 text-ink">Réalisations techniques</h3>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <div class="border border-hairline bg-panel rounded-sm p-7 hover:border-accent/50 transition-colors flex flex-col justify-between">
+      <div>
+        <h4 class="text-base font-semibold text-ink mb-1">Administration Linux</h4>
+        <p class="text-xs text-accent mb-4 font-mono">Gestion utilisateurs &amp; droits</p>
+        <p class="text-muted text-sm mb-6 leading-relaxed">Maîtrise de la gestion des identités et des permissions avancées (ACL, SetGID, Sudoers) sur Debian.</p>
+        <div class="space-y-2 mb-6">
+          <a href="TP_Complet_Linux_Gestion_Utilisateurs_Groupes.pdf" target="_blank" class="flex items-center gap-2 text-xs text-ink/80 hover:text-accent transition-colors border-b border-hairline pb-1 w-fit">
+            <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            TP_Gestion_Utilisateurs.pdf
+          </a>
+          <a href="TP_Gestion_Fichiers_Linux_NF.pdf" target="_blank" class="flex items-center gap-2 text-xs text-ink/80 hover:text-accent transition-colors border-b border-hairline pb-1 w-fit">
+            <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            TP_Gestion_Fichiers.pdf
+          </a>
+        </div>
+      </div>
+      <div class="text-xs text-muted font-mono border-t border-hairline pt-4">Bash · ACL · Sudo</div>
+    </div>
+
+    <div class="border border-hairline bg-panel rounded-sm p-7 hover:border-accent/50 transition-colors flex flex-col justify-between">
+      <div>
+        <h4 class="text-base font-semibold text-ink mb-1">Infrastructure web &amp; DNS</h4>
+        <p class="text-xs text-accent mb-4 font-mono">Bind9 / Apache2</p>
+        <p class="text-muted text-sm mb-6 leading-relaxed">Mise en place d'un service DNS faisant autorité et configuration d'un serveur web HTTP.</p>
+        <a href="TP_DNS_Apache2_BTS_SIO1_Complet.pdf" target="_blank" class="flex items-center gap-2 text-xs text-ink/80 hover:text-accent transition-colors border-b border-hairline pb-1 w-fit mb-6">
+          <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          TP_DNS_Apache2.pdf
+        </a>
+      </div>
+      <div class="text-xs text-muted font-mono border-t border-hairline pt-4">DNS Bind9 · Apache2</div>
+    </div>
+
+    <div class="border border-hairline bg-panel rounded-sm p-7 hover:border-accent/50 transition-colors flex flex-col justify-between">
+      <div>
+        <h4 class="text-base font-semibold text-ink mb-1">Répartition de charge</h4>
+        <p class="text-xs text-accent mb-4 font-mono">HAProxy / Haute disponibilité</p>
+        <p class="text-muted text-sm mb-6 leading-relaxed">Configuration d'un load-balancer pour distribuer le trafic entre plusieurs serveurs applicatifs.</p>
+        <a href="TP_Linux_loadbalancer.pdf" target="_blank" class="flex items-center gap-2 text-xs text-ink/80 hover:text-accent transition-colors border-b border-hairline pb-1 w-fit mb-6">
+          <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          TP_Loadbalancer_HAProxy.pdf
+        </a>
+      </div>
+      <div class="text-xs text-muted font-mono border-t border-hairline pt-4">HAProxy · RoundRobin</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications" class="py-24 max-w-6xl mx-auto px-6 reveal">
+  <h2 class="text-2xl md:text-3xl font-semibold mb-10 text-ink">Certifications</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+    <div class="border border-hairline bg-panel rounded-sm p-6 hover:border-accent/50 transition-colors flex flex-col justify-between">
+      <div>
+        <div class="flex justify-between items-start mb-3">
+          <span class="text-xs font-mono bg-accent/10 text-accent px-2 py-0.5 rounded-sm border border-accent/30">CNIL</span>
+          <span class="text-xs font-mono text-muted">Module 1</span>
+        </div>
+        <h3 class="text-base font-semibold text-ink mb-2">Atelier RGPD — Notions clés</h3>
+        <p class="text-muted text-sm mb-4 leading-relaxed">Compréhension des principes fondamentaux du RGPD, des données à caractère personnel et des organismes concernés.</p>
+      </div>
+      <div class="flex items-center gap-3 pt-3 border-t border-hairline font-mono text-xs">
+        <a href="attestation-rgpd-1.pdf" target="_blank" class="text-accent hover:text-accent/80 underline underline-offset-2">Voir</a>
+        <span class="text-hairline">|</span>
+        <a href="attestation-rgpd-1.pdf" download="Attestation_RGPD_Module1_KASSAI.pdf" class="text-muted hover:text-ink underline underline-offset-2">Télécharger</a>
+      </div>
+    </div>
+
+    <div class="border border-hairline bg-panel rounded-sm p-6 hover:border-accent/50 transition-colors flex flex-col justify-between">
+      <div>
+        <div class="flex justify-between items-start mb-3">
+          <span class="text-xs font-mono bg-accent/10 text-accent px-2 py-0.5 rounded-sm border border-accent/30">CNIL</span>
+          <span class="text-xs font-mono text-muted">Module 2</span>
+        </div>
+        <h3 class="text-base font-semibold text-ink mb-2">Atelier RGPD — Principes du traitement</h3>
+        <p class="text-muted text-sm mb-4 leading-relaxed">Règles d'or de la protection des données, licéité du traitement et gestion des droits des personnes.</p>
+      </div>
+      <div class="flex items-center gap-3 pt-3 border-t border-hairline font-mono text-xs">
+        <a href="attestation-rgpd-2.pdf" target="_blank" class="text-accent hover:text-accent/80 underline underline-offset-2">Voir</a>
+        <span class="text-hairline">|</span>
+        <a href="attestation-rgpd-2.pdf" download="Attestation_RGPD_Module2_KASSAI.pdf" class="text-muted hover:text-ink underline underline-offset-2">Télécharger</a>
+      </div>
+    </div>
+
+    <div class="border border-hairline bg-panel rounded-sm p-6 hover:border-accent/50 transition-colors flex flex-col justify-between">
+      <div>
+        <div class="flex justify-between items-start mb-3">
+          <span class="text-xs font-mono bg-accent/10 text-accent px-2 py-0.5 rounded-sm border border-accent/30">CNIL</span>
+          <span class="text-xs font-mono text-muted">Module 3</span>
+        </div>
+        <h3 class="text-base font-semibold text-ink mb-2">Atelier RGPD — Sécurité des données</h3>
+        <p class="text-muted text-sm mb-4 leading-relaxed">Mesures de sécurité des systèmes d'information, gestion des violations de données et analyse d'impact (AIPD).</p>
+      </div>
+      <div class="flex items-center gap-3 pt-3 border-t border-hairline font-mono text-xs">
+        <a href="attestation-rgpd-3.pdf" target="_blank" class="text-accent hover:text-accent/80 underline underline-offset-2">Voir</a>
+        <span class="text-hairline">|</span>
+        <a href="attestation-rgpd-3.pdf" download="Attestation_RGPD_Module3_KASSAI.pdf" class="text-muted hover:text-ink underline underline-offset-2">Télécharger</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- VEILLE -->
+<section id="veille" class="py-24 max-w-6xl mx-auto px-6 reveal">
+  <h2 class="text-2xl md:text-3xl font-semibold mb-10 text-ink">Veille technologique</h2>
+
+  <div class="border border-hairline bg-panel rounded-sm p-6 mb-8">
+    <h3 class="text-base font-semibold text-ink mb-2">Sources &amp; méthodologie</h3>
+    <p class="text-muted text-sm mb-4 leading-relaxed">
+      Suivi quotidien de l'évolution des menaces informatiques et des innovations en intelligence artificielle, à partir d'actualités spécialisées, de rapports de sécurité et de bulletins d'alerte officiels.
+    </p>
+    <div class="flex flex-wrap gap-2 pt-3 border-t border-hairline">
+      <span class="text-xs font-mono text-ink/80 border border-hairline px-3 py-1 rounded-sm">Feedly</span>
+      <span class="text-xs font-mono text-ink/80 border border-hairline px-3 py-1 rounded-sm">CERT-FR (ANSSI)</span>
+      <span class="text-xs font-mono text-ink/80 border border-hairline px-3 py-1 rounded-sm">Presse spécialisée IT</span>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="border border-hairline bg-panel rounded-sm p-6 hover:border-accent/50 transition-colors flex flex-col justify-between">
+      <div>
+        <div class="flex justify-between items-start mb-3">
+          <span class="text-xs font-mono text-accent">Axe 01</span>
+          <span class="text-xs font-mono text-muted">IA &amp; ML</span>
+        </div>
+        <h3 class="text-base font-semibold text-ink mb-2">Intelligence artificielle &amp; machine learning</h3>
+        <p class="text-muted text-sm mb-4 leading-relaxed">Analyse de l'intégration des modèles d'IA au sein des infrastructures système, de l'automatisation de l'administration et de la détection d'anomalies.</p>
+      </div>
+      <div class="pt-3 border-t border-hairline font-mono text-xs">
+        <p class="text-muted mb-2">Flux suivis</p>
+        <div class="flex flex-wrap gap-3">
+          <a href="https://www.usine-digitale.fr/intelligence-artificielle/" target="_blank" class="text-accent hover:underline">L'Usine Digitale (IA)</a>
+          <a href="https://www.silicon.fr/intelligence-artificielle" target="_blank" class="text-accent hover:underline">Silicon.fr</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="border border-hairline bg-panel rounded-sm p-6 hover:border-accent/50 transition-colors flex flex-col justify-between">
+      <div>
+        <div class="flex justify-between items-start mb-3">
+          <span class="text-xs font-mono text-accent">Axe 02</span>
+          <span class="text-xs font-mono text-muted">SecOps</span>
+        </div>
+        <h3 class="text-base font-semibold text-ink mb-2">Cybersécurité : phishing, ransomwares &amp; réseaux</h3>
+        <p class="text-muted text-sm mb-4 leading-relaxed">Suivi de l'évolution des cyberattaques par hameçonnage, de la propagation des ransomwares et des méthodes de protection des architectures réseau.</p>
+      </div>
+      <div class="pt-3 border-t border-hairline font-mono text-xs">
+        <p class="text-muted mb-2">Flux suivis</p>
+        <div class="flex flex-wrap gap-3">
+          <a href="https://www.cert.ssi.gouv.fr/" target="_blank" class="text-accent hover:underline">CERT-FR</a>
+          <a href="https://www.lemondeinformatique.fr/actualites/lire-securite-118.html" target="_blank" class="text-accent hover:underline">Le Monde Informatique</a>
+          <a href="https://www.it-connect.fr/" target="_blank" class="text-accent hover:underline">IT-Connect</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-24 max-w-6xl mx-auto px-6 reveal">
+  <h2 class="text-2xl md:text-3xl font-semibold mb-10 text-ink">Contact</h2>
+  <div class="grid md:grid-cols-3 gap-6">
+
+    <a href="mailto:christian.kassai@ynov.com" class="border border-hairline rounded-sm p-6 bg-panel hover:border-accent/60 transition-colors group block">
+      <div class="text-accent mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+      </div>
+      <h3 class="text-ink font-semibold mb-2 text-sm">Email</h3>
+      <p class="text-muted text-xs break-all">christian.kassai@ynov.com</p>
+      <p class="text-[11px] text-accent mt-4 font-mono">Envoyer un mail →</p>
+    </a>
+
+    <a href="tel:0619870275" class="border border-hairline rounded-sm p-6 bg-panel hover:border-accent/60 transition-colors group block">
+      <div class="text-accent mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+        </svg>
+      </div>
+      <h3 class="text-ink font-semibold mb-2 text-sm">Téléphone</h3>
+      <p class="text-muted text-xs">06 19 87 02 75</p>
+      <p class="text-[11px] text-accent mt-4 font-mono">Appeler →</p>
+    </a>
+
+    <a href="https://www.google.com/maps/search/?api=1&query=Ynov+Campus+19+rue+Haddock+Chessy" target="_blank" class="border border-hairline rounded-sm p-6 bg-panel hover:border-accent/60 transition-colors group block">
+      <div class="text-accent mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      </div>
+      <h3 class="text-ink font-semibold mb-2 text-sm">Localisation</h3>
+      <p class="text-muted text-xs leading-relaxed">Ynov Campus<br>19 rue Haddock, Chessy</p>
+      <p class="text-[11px] text-accent mt-4 font-mono">Ouvrir Maps →</p>
+    </a>
+
+  </div>
+
+  <div class="flex justify-center mt-8">
+    <a href="https://www.linkedin.com/in/christian-kassa%C3%AF-614536381/" target="_blank" rel="noopener" aria-label="Profil LinkedIn de Christian Kassaï"
+       class="w-9 h-9 rounded-sm border border-hairline flex items-center justify-center text-muted hover:text-accent hover:border-accent/50 transition-colors">
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+    </a>
+  </div>
+</section>
+
+<footer class="py-10 text-center text-xs text-muted font-mono border-t border-hairline">
+  © 2026 KASSAI Christian — BTS SIO SISR
+  <span class="block mt-1 text-muted/60">Dernière mise à jour : <span id="last-updated"></span></span>
+</footer>
+
+<button id="back-to-top" aria-label="Retour en haut" class="fixed bottom-6 right-6 z-40 w-11 h-11 rounded-sm bg-panel border border-hairline text-accent flex items-center justify-center opacity-0 pointer-events-none translate-y-2 transition-all duration-300 hover:border-accent/60">
+  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/></svg>
+</button>
+
+<script>
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(function (el) { observer.observe(el); });
+
+  // Flash d'atterrissage au clic sur un lien de menu
+  var pendingFlash = null;
+  document.querySelectorAll('a[data-navlink]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var id = link.getAttribute('href');
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      pendingFlash = target;
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  function triggerPendingFlash() {
+    if (!pendingFlash) return;
+    var el = pendingFlash;
+    pendingFlash = null;
+    el.classList.remove('section-flash');
+    void el.offsetWidth;
+    el.classList.add('section-flash');
+    setTimeout(function () { el.classList.remove('section-flash'); }, 950);
+  }
+
+  if ('onscrollend' in window) {
+    window.addEventListener('scrollend', triggerPendingFlash);
+  } else {
+    var scrollTimer;
+    window.addEventListener('scroll', function () {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(triggerPendingFlash, 150);
+    });
+  }
+
+  // Surbrillance du lien de menu actif selon la section visible
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('a[data-navlink]'));
+  var spySections = navLinks
+    .map(function (link) { return document.querySelector(link.getAttribute('href')); })
+    .filter(Boolean);
+  var spyObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        var id = '#' + entry.target.id;
+        navLinks.forEach(function (link) {
+          link.classList.toggle('nav-active', link.getAttribute('href') === id);
+        });
+      }
+    });
+  }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+  spySections.forEach(function (s) { spyObserver.observe(s); });
+
+  // Barre de progression de scroll
+  var progressBar = document.getElementById('scroll-progress');
+  function updateProgress() {
+    var scrollTop = window.scrollY;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    if (progressBar) progressBar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
+  // Bouton retour en haut
+  var backToTop = document.getElementById('back-to-top');
+  function toggleBackToTop() {
+    if (!backToTop) return;
+    var show = window.scrollY > window.innerHeight * 0.8;
+    backToTop.classList.toggle('opacity-0', !show);
+    backToTop.classList.toggle('pointer-events-none', !show);
+    backToTop.classList.toggle('translate-y-2', !show);
+  }
+  window.addEventListener('scroll', toggleBackToTop, { passive: true });
+  toggleBackToTop();
+  if (backToTop) {
+    backToTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // Date de dernière mise à jour (basée sur la date de build de la page)
+  var lastUpdatedEl = document.getElementById('last-updated');
+  if (lastUpdatedEl) {
+    lastUpdatedEl.textContent = new Intl.DateTimeFormat('fr-FR', { month: 'long', year: 'numeric' }).format(new Date('2026-09-16'));
+  }
+</script>
+
 </body>
 </html>
