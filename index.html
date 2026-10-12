@@ -65,6 +65,14 @@
   .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
   .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
+
+  #unit-drawer { visibility: hidden; transition: visibility 0s linear .35s; }
+  #unit-drawer.open { visibility: visible; transition-delay: 0s; }
+  #unit-drawer .ud-overlay { opacity: 0; transition: opacity .3s ease; }
+  #unit-drawer.open .ud-overlay { opacity: 1; }
+  #unit-drawer .ud-panel { transform: translateX(100%); transition: transform .35s cubic-bezier(.22,1,.36,1); }
+  #unit-drawer.open .ud-panel { transform: none; }
+
   [data-navlink].nav-active { color: #4CC9B0; }
 
   .section-flash { position: relative; }
@@ -87,6 +95,7 @@
     .reveal { transition: none; opacity: 1; transform: none; }
     .caret::after { animation: none; opacity: 1; }
     .section-flash::after { animation: none; display: none; }
+    #unit-drawer, #unit-drawer .ud-overlay, #unit-drawer .ud-panel { transition: none; }
   }
 </style>
 </head>
@@ -383,39 +392,34 @@
 
   </div>
 
-  <!-- U5 -->
-  <div id="u5" class="mt-20">
-    <div class="flex items-center justify-between mb-2">
-      <h3 class="text-xl font-semibold text-ink">U5 — Production et fourniture de services informatiques</h3>
-      <span class="text-xs font-mono text-accent">Épreuve U5</span>
-    </div>
-    <p class="text-muted text-sm mb-8 max-w-2xl">Situations professionnelles liées à la production, à l'exploitation et au support des services informatiques.</p>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="border border-dashed border-hairline bg-panel/50 rounded-sm p-7 flex flex-col justify-between">
-        <div>
-          <span class="text-xs font-mono bg-warn/10 text-warn px-2 py-0.5 rounded-sm border border-warn/30">En cours</span>
-          <h4 class="text-base font-semibold text-ink mt-3 mb-1">Situation professionnelle à venir</h4>
-          <p class="text-muted text-sm leading-relaxed">Les documents de cette épreuve seront ajoutés ici.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- ÉPREUVES U5 / U6 -->
+  <div class="mt-20">
+    <h3 class="text-xl font-semibold text-ink mb-2">Épreuves U5 &amp; U6</h3>
+    <p class="text-muted text-sm mb-8 max-w-2xl">Clique sur une épreuve pour ouvrir le panneau et consulter les documents associés.</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-  <!-- U6 -->
-  <div id="u6" class="mt-20">
-    <div class="flex items-center justify-between mb-2">
-      <h3 class="text-xl font-semibold text-ink">U6 — Cybersécurité des services informatiques</h3>
-      <span class="text-xs font-mono text-accent">Épreuve U6</span>
-    </div>
-    <p class="text-muted text-sm mb-8 max-w-2xl">Projets et situations liés à la sécurisation des infrastructures, des données et des accès.</p>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="border border-dashed border-hairline bg-panel/50 rounded-sm p-7 flex flex-col justify-between">
+      <button type="button" onclick="openUnitDrawer('u5')" class="group text-left border border-hairline bg-panel rounded-sm p-7 hover:border-accent/50 transition-colors flex items-start justify-between gap-4">
         <div>
-          <span class="text-xs font-mono bg-warn/10 text-warn px-2 py-0.5 rounded-sm border border-warn/30">En cours</span>
-          <h4 class="text-base font-semibold text-ink mt-3 mb-1">Projet cybersécurité à venir</h4>
-          <p class="text-muted text-sm leading-relaxed">Les documents de cette épreuve seront ajoutés ici.</p>
+          <span class="text-xs font-mono text-accent">Épreuve U5</span>
+          <h4 class="text-lg font-semibold text-ink mt-2 mb-2">Production et fourniture de services informatiques</h4>
+          <p class="text-muted text-sm leading-relaxed">Situations professionnelles liées à la production, à l'exploitation et au support des services.</p>
         </div>
-      </div>
+        <span class="shrink-0 w-9 h-9 border border-hairline rounded-sm flex items-center justify-center text-accent group-hover:border-accent/50 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </span>
+      </button>
+
+      <button type="button" onclick="openUnitDrawer('u6')" class="group text-left border border-hairline bg-panel rounded-sm p-7 hover:border-accent/50 transition-colors flex items-start justify-between gap-4">
+        <div>
+          <span class="text-xs font-mono text-accent">Épreuve U6</span>
+          <h4 class="text-lg font-semibold text-ink mt-2 mb-2">Cybersécurité des services informatiques</h4>
+          <p class="text-muted text-sm leading-relaxed">Projets et situations liés à la sécurisation des infrastructures, des données et des accès.</p>
+        </div>
+        <span class="shrink-0 w-9 h-9 border border-hairline rounded-sm flex items-center justify-center text-accent group-hover:border-accent/50 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </span>
+      </button>
+
     </div>
   </div>
 </section>
@@ -520,6 +524,27 @@
       <iframe id="cert-modal-frame" src="" class="w-full h-full min-h-[60vh]" title="Aperçu de l'attestation"></iframe>
     </div>
   </div>
+</div>
+
+<!-- UNIT DRAWER (U5 / U6) -->
+<div id="unit-drawer" class="fixed inset-0 z-[80]" aria-hidden="true">
+  <div class="ud-overlay absolute inset-0 bg-base/80 backdrop-blur-sm" onclick="closeUnitDrawer()"></div>
+  <aside class="ud-panel absolute top-0 right-0 h-full w-full max-w-md bg-panel border-l border-hairline flex flex-col" role="dialog" aria-modal="true" aria-labelledby="ud-title">
+    <div class="flex items-start justify-between gap-4 px-6 py-5 border-b border-hairline">
+      <div class="min-w-0">
+        <p id="ud-tag" class="text-xs font-mono text-accent mb-1"></p>
+        <h3 id="ud-title" class="text-base font-semibold text-ink leading-snug"></h3>
+      </div>
+      <button type="button" onclick="closeUnitDrawer()" aria-label="Fermer" class="shrink-0 w-8 h-8 flex items-center justify-center text-muted hover:text-ink border border-hairline rounded-sm">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="flex-1 overflow-y-auto px-6 py-6">
+      <p id="ud-desc" class="text-muted text-sm leading-relaxed mb-6"></p>
+      <p class="text-xs font-mono text-muted mb-3">documents</p>
+      <ul id="ud-docs" class="space-y-3"></ul>
+    </div>
+  </aside>
 </div>
 
 <!-- VEILLE -->
@@ -751,14 +776,105 @@
   window.closeCertModal = function () {
     certModal.classList.add('hidden');
     certModal.classList.remove('flex');
-    document.body.classList.remove('overflow-hidden');
+    if (!document.getElementById('unit-drawer').classList.contains('open')) {
+      document.body.classList.remove('overflow-hidden');
+    }
     certFrame.src = '';
+  };
+
+
+  // Panneau latéral U5 / U6
+  // Pour ajouter un document : ajoute une ligne { title, file, desc } dans la liste de l'épreuve.
+  var unitData = {
+    u5: {
+      tag: 'Épreuve U5',
+      title: 'Production et fourniture de services informatiques',
+      desc: 'Situations professionnelles liées à la production, à l\'exploitation et au support des services informatiques.',
+      docs: [
+        // { title: 'Projet Active Directory', file: 'projet-active-directory.pdf', desc: 'AD DS, GPO, partages et droits NTFS.' }
+      ]
+    },
+    u6: {
+      tag: 'Épreuve U6',
+      title: 'Cybersécurité des services informatiques',
+      desc: 'Projets et situations liés à la sécurisation des infrastructures, des données et des accès.',
+      docs: [
+        // { title: 'Titre du document', file: 'nom-du-fichier.pdf', desc: 'Courte description.' }
+      ]
+    }
+  };
+
+  var unitDrawer = document.getElementById('unit-drawer');
+  var lastFocusBeforeDrawer = null;
+
+  function buildDocItem(doc, tag) {
+    var li = document.createElement('li');
+    li.className = 'border border-hairline bg-panel2 rounded-sm p-4';
+    var h = document.createElement('p');
+    h.className = 'text-sm font-semibold text-ink mb-1';
+    h.textContent = doc.title;
+    li.appendChild(h);
+    if (doc.desc) {
+      var d = document.createElement('p');
+      d.className = 'text-xs text-muted leading-relaxed mb-3';
+      d.textContent = doc.desc;
+      li.appendChild(d);
+    }
+    var row = document.createElement('div');
+    row.className = 'flex items-center gap-3 font-mono text-xs';
+    var view = document.createElement('button');
+    view.type = 'button';
+    view.className = 'text-accent hover:text-accent/80 underline underline-offset-2';
+    view.textContent = 'Aperçu';
+    view.addEventListener('click', function () { openCertModal(doc.title, tag, doc.file, doc.file); });
+    var sep = document.createElement('span');
+    sep.className = 'text-hairline';
+    sep.textContent = '|';
+    var dl = document.createElement('a');
+    dl.href = doc.file;
+    dl.setAttribute('download', doc.file);
+    dl.className = 'text-muted hover:text-ink underline underline-offset-2';
+    dl.textContent = 'Télécharger';
+    row.appendChild(view); row.appendChild(sep); row.appendChild(dl);
+    li.appendChild(row);
+    return li;
+  }
+
+  window.openUnitDrawer = function (key) {
+    var data = unitData[key];
+    if (!data) return;
+    document.getElementById('ud-tag').textContent = data.tag;
+    document.getElementById('ud-title').textContent = data.title;
+    document.getElementById('ud-desc').textContent = data.desc;
+    var list = document.getElementById('ud-docs');
+    list.innerHTML = '';
+    if (data.docs.length === 0) {
+      var empty = document.createElement('li');
+      empty.className = 'border border-dashed border-hairline rounded-sm p-4 text-sm text-muted';
+      empty.textContent = 'Les documents seront ajoutés ici prochainement.';
+      list.appendChild(empty);
+    } else {
+      data.docs.forEach(function (doc) { list.appendChild(buildDocItem(doc, data.tag)); });
+    }
+    lastFocusBeforeDrawer = document.activeElement;
+    unitDrawer.classList.add('open');
+    unitDrawer.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('overflow-hidden');
+  };
+
+  window.closeUnitDrawer = function () {
+    unitDrawer.classList.remove('open');
+    unitDrawer.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('overflow-hidden');
+    if (lastFocusBeforeDrawer && lastFocusBeforeDrawer.focus) lastFocusBeforeDrawer.focus();
   };
 
   var certOverlay = document.getElementById('cert-modal-overlay');
   if (certOverlay) certOverlay.addEventListener('click', closeCertModal);
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeCertModal();
+    if (e.key !== 'Escape') return;
+    if (!certModal.classList.contains('hidden')) { closeCertModal(); }
+    else if (unitDrawer.classList.contains('open')) { closeUnitDrawer(); }
   });
 </script>
 
