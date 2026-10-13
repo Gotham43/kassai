@@ -73,6 +73,8 @@
   #unit-drawer .ud-panel { transform: translateX(100%); transition: transform .35s cubic-bezier(.22,1,.36,1); }
   #unit-drawer.open .ud-panel { transform: none; }
 
+  .veille-grid:not(.expanded) .veille-extra { display: none; }
+
   [data-navlink].nav-active { color: #4CC9B0; }
 
   .section-flash { position: relative; }
@@ -118,7 +120,7 @@
     <div class="hidden md:flex items-center gap-7 text-sm text-muted font-mono">
       <a href="#presentation" data-navlink class="hover:text-ink transition-colors">présentation</a>
       <a href="#skills" data-navlink class="hover:text-ink transition-colors">compétences</a>
-      <a href="#experience" data-navlink class="hover:text-ink transition-colors">expérience</a>
+      <a href="#experience" data-navlink class="hover:text-ink transition-colors">parcours</a>
       <a href="#projets" data-navlink class="hover:text-ink transition-colors">projets</a>
       <a href="#certifications" data-navlink class="hover:text-ink transition-colors">certifications</a>
       <a href="#veille" data-navlink class="hover:text-ink transition-colors">veille</a>
@@ -205,7 +207,7 @@
       <p class="text-muted leading-relaxed">
         Mon parcours est orienté vers la gestion des infrastructures, le déploiement de serveurs et la sécurité réseau. Vous trouverez ci-dessous mon CV ainsi que mes projets et réalisations.
       </p>
-      <div class="grid grid-cols-2 gap-4 pt-4">
+      <div class="grid grid-cols-3 gap-3 pt-4">
         <div class="bg-panel border border-hairline rounded-sm p-4">
           <span class="text-ink font-medium block mb-1">Rigoureux</span>
           <span class="text-xs text-muted">Précision technique</span>
@@ -213,6 +215,10 @@
         <div class="bg-panel border border-hairline rounded-sm p-4">
           <span class="text-ink font-medium block mb-1">Réactif</span>
           <span class="text-xs text-muted">Gestion d'incidents</span>
+        </div>
+        <div class="bg-panel border border-hairline rounded-sm p-4">
+          <span class="text-ink font-medium block mb-1">Esprit d'équipe</span>
+          <span class="text-xs text-muted">Support utilisateurs</span>
         </div>
       </div>
     </div>
@@ -549,9 +555,10 @@
 
 <!-- VEILLE -->
 <section id="veille" class="py-24 max-w-6xl mx-auto px-6 reveal">
-  <h2 class="text-2xl md:text-3xl font-semibold mb-10 text-ink">Veille technologique</h2>
+  <h2 class="text-2xl md:text-3xl font-semibold mb-3 text-ink">Veille technologique</h2>
+  <p class="text-muted text-sm mb-10 max-w-lg">Sélection d'articles suivis sur l'IA, la cybersécurité et les réseaux — dernière mise à jour le 13/10/2026.</p>
 
-  <div class="border border-hairline bg-panel rounded-sm p-6 mb-8">
+  <div class="border border-hairline bg-panel rounded-sm p-6 mb-12">
     <h3 class="text-base font-semibold text-ink mb-2">Sources &amp; méthodologie</h3>
     <p class="text-muted text-sm mb-4 leading-relaxed">
       Suivi quotidien de l'évolution des menaces informatiques et des innovations en intelligence artificielle, à partir d'actualités spécialisées, de rapports de sécurité et de bulletins d'alerte officiels.
@@ -563,42 +570,365 @@
     </div>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <div class="border border-hairline bg-panel rounded-sm p-6 hover:border-accent/50 transition-colors flex flex-col justify-between">
-      <div>
-        <div class="flex justify-between items-start mb-3">
-          <span class="text-xs font-mono text-accent">Axe 01</span>
-          <span class="text-xs font-mono text-muted">IA &amp; ML</span>
-        </div>
-        <h3 class="text-base font-semibold text-ink mb-2">Intelligence artificielle &amp; machine learning</h3>
-        <p class="text-muted text-sm mb-4 leading-relaxed">Analyse de l'intégration des modèles d'IA au sein des infrastructures système, de l'automatisation de l'administration et de la détection d'anomalies.</p>
+  <div class="flex items-center justify-between mb-6">
+    <h3 class="text-lg font-semibold text-ink">Intelligence artificielle &amp; machine learning</h3>
+    <span class="text-xs font-mono text-accent">Axe 01</span>
+  </div>
+  <div id="veille-ai" class="veille-grid grid grid-cols-1 md:grid-cols-3 gap-6">
+    <a href="https://www.it-connect.fr/ubuntu-noyau-linux-chaque-semaine-cve-ia/" target="_blank" rel="noopener" class="veille-card group border border-hairline bg-panel rounded-sm overflow-hidden hover:border-accent/50 transition-colors flex flex-col">
+      <div class="aspect-video bg-panel2 overflow-hidden">
+        <img src="https://www.it-connect.fr/wp-content-itc/uploads/2026/09/ubuntu-nouveau-rythme-de-publication-du-noyau.jpg.webp" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+             onerror="this.closest('a').querySelector('.thumb-fallback').classList.remove('hidden'); this.remove();">
+        <div class="thumb-fallback hidden w-full h-full items-center justify-center text-accent"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg></div>
       </div>
-      <div class="pt-3 border-t border-hairline font-mono text-xs">
-        <p class="text-muted mb-2">Flux suivis</p>
-        <div class="flex flex-wrap gap-3">
-          <a href="https://www.usine-digitale.fr/intelligence-artificielle/" target="_blank" class="text-accent hover:underline">L'Usine Digitale (IA)</a>
-          <a href="https://www.silicon.fr/intelligence-artificielle" target="_blank" class="text-accent hover:underline">Silicon.fr</a>
-        </div>
+      <div class="p-5 flex flex-col flex-1">
+        <span class="text-[11px] font-mono text-muted mb-2">IT-Connect · 29/09/2026</span>
+        <h4 class="text-sm font-semibold text-ink mb-2 leading-snug group-hover:text-accent transition-colors">Ubuntu : un nouveau noyau chaque semaine face à l&#x27;explosion des failles</h4>
+        <p class="text-muted text-xs leading-relaxed mb-3">Submergé par les failles que l&#x27;IA permet de découvrir, Canonical abandonne son ancien rythme de mises à jour du noyau et publiera une version chaque semaine dès fin octobre.</p>
+        <span class="text-[11px] text-accent mt-auto font-mono">Lire l'article →</span>
       </div>
-    </div>
+    </a>
 
-    <div class="border border-hairline bg-panel rounded-sm p-6 hover:border-accent/50 transition-colors flex flex-col justify-between">
-      <div>
-        <div class="flex justify-between items-start mb-3">
-          <span class="text-xs font-mono text-accent">Axe 02</span>
-          <span class="text-xs font-mono text-muted">SecOps</span>
-        </div>
-        <h3 class="text-base font-semibold text-ink mb-2">Cybersécurité : phishing, ransomwares &amp; réseaux</h3>
-        <p class="text-muted text-sm mb-4 leading-relaxed">Suivi de l'évolution des cyberattaques par hameçonnage, de la propagation des ransomwares et des méthodes de protection des architectures réseau.</p>
+    <a href="https://edugroupe.com/competences-ia-deployer-entreprise-2026/" target="_blank" rel="noopener" class="veille-card group border border-hairline bg-panel rounded-sm overflow-hidden hover:border-accent/50 transition-colors flex flex-col">
+      <div class="aspect-video bg-panel2 overflow-hidden">
+        <img src="https://edugroupe.com/wp-content/uploads/2019/06/Competences_IA_2026.jpg" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+             onerror="this.closest('a').querySelector('.thumb-fallback').classList.remove('hidden'); this.remove();">
+        <div class="thumb-fallback hidden w-full h-full items-center justify-center text-accent"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg></div>
       </div>
-      <div class="pt-3 border-t border-hairline font-mono text-xs">
-        <p class="text-muted mb-2">Flux suivis</p>
-        <div class="flex flex-wrap gap-3">
-          <a href="https://www.cert.ssi.gouv.fr/" target="_blank" class="text-accent hover:underline">CERT-FR</a>
-          <a href="https://www.lemondeinformatique.fr/actualites/lire-securite-118.html" target="_blank" class="text-accent hover:underline">Le Monde Informatique</a>
-          <a href="https://www.it-connect.fr/" target="_blank" class="text-accent hover:underline">IT-Connect</a>
-        </div>
+      <div class="p-5 flex flex-col flex-1">
+        <span class="text-[11px] font-mono text-muted mb-2">EduGroupe · 12/06/2026</span>
+        <h4 class="text-sm font-semibold text-ink mb-2 leading-snug group-hover:text-accent transition-colors">4 compétences IA à maîtriser en 2026 pour déployer l&#x27;IA en entreprise</h4>
+        <p class="text-muted text-xs leading-relaxed mb-3">Quatre compétences deviennent centrales pour déployer l&#x27;IA en entreprise de façon fiable : architecture, administration, interfaçage et gouvernance.</p>
+        <span class="text-[11px] text-accent mt-auto font-mono">Lire l'article →</span>
       </div>
+    </a>
+
+    <a href="https://www.sophos.com/fr-fr/blog/generative-ai-and-cybersecurity-what-sophos-experts-expect-in-2026" target="_blank" rel="noopener" class="veille-card group border border-hairline bg-panel rounded-sm overflow-hidden hover:border-accent/50 transition-colors flex flex-col">
+      <div class="aspect-video bg-panel2 flex items-center justify-center text-accent"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg></div>
+      <div class="p-5 flex flex-col flex-1">
+        <span class="text-[11px] font-mono text-muted mb-2">Sophos · prévisions 2026</span>
+        <h4 class="text-sm font-semibold text-ink mb-2 leading-snug group-hover:text-accent transition-colors">IA générative et cybersécurité : les prévisions Sophos pour 2026</h4>
+        <p class="text-muted text-xs leading-relaxed mb-3">Les agents IA dans les centres de sécurité passent de l&#x27;expérimentation à des usages concrets, tandis que les applications IA des entreprises deviennent elles-mêmes une surface d&#x27;attaque.</p>
+        <span class="text-[11px] text-accent mt-auto font-mono">Lire l'article →</span>
+      </div>
+    </a>
+
+    <a href="https://www.proactivanet.com/fr/blog/ia-fr/votre-service-informatique-est-il-pret-pour-2026-comment-lia-dans-litsm-vous-protege-contre-les-failles-de-securite-et-les-sanctions/" target="_blank" rel="noopener" class="veille-card group border border-hairline bg-panel rounded-sm overflow-hidden hover:border-accent/50 transition-colors flex flex-col">
+      <div class="aspect-video bg-panel2 flex items-center justify-center text-accent"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg></div>
+      <div class="p-5 flex flex-col flex-1">
+        <span class="text-[11px] font-mono text-muted mb-2">Proactivanet · 04/08/2026</span>
+        <h4 class="text-sm font-semibold text-ink mb-2 leading-snug group-hover:text-accent transition-colors">L&#x27;IA dans l&#x27;ITSM en 2026 : 5 points clés</h4>
+        <p class="text-muted text-xs leading-relaxed mb-3">L&#x27;intelligence artificielle transforme la gestion des services informatiques en automatisant la résolution des incidents et la supervision des infrastructures.</p>
+        <span class="text-[11px] text-accent mt-auto font-mono">Lire l'article →</span>
+      </div>
+    </a>
+
+    <a href="https://mink-agency.com/tendances-ia-automatisation-2026/" target="_blank" rel="noopener" class="veille-card group border border-hairline bg-panel rounded-sm overflow-hidden hover:border-accent/50 transition-colors flex flex-col">
+      <div class="aspect-video bg-panel2 flex items-center justify-center text-accent"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg></div>
+      <div class="p-5 flex flex-col flex-1">
+        <span class="text-[11px] font-mono text-muted mb-2">Mink Agency · 13/11/2025</span>
+        <h4 class="text-sm font-semibold text-ink mb-2 leading-snug group-hover:text-accent transition-colors">Tendances IA 2026 : automatisation et agents intelligents</h4>
+        <p class="text-muted text-xs leading-relaxed mb-3">Les tendances de 2026 s&#x27;orientent vers l&#x27;orchestration de plusieurs agents autonomes, avec une gouvernance renforcée des systèmes déployés.</p>
+        <span class="text-[11px] text-accent mt-auto font-mono">Lire l'article →</span>
+      </div>
+    </a>
+
+    <a href="https://siecledigital.fr/2025/12/30/cybersecurite-et-ia-ce-qui-attend-vraiment-les-entreprises-en-2026/" target="_blank" rel="noopener" class="veille-card group border border-hairline bg-panel rounded-sm overflow-hidden hover:border-accent/50 transition-colors flex flex-col">
+      <div class="aspect-video bg-panel2 flex items-center justify-center text-accent"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg></div>
+      <div class="p-5 flex flex-col flex-1">
+        <span class="text-[11px] font-mono text-muted mb-2">Siècle Digital · 30/12/2025</span>
+        <h4 class="text-sm font-semibold text-ink mb-2 leading-snug group-hover:text-accent transition-colors">Cybersécurité et IA : ce qui attend vraiment les entreprises en 2026</h4>
+        <p class="text-muted text-xs leading-relaxed mb-3">L&#x27;identité numérique devient le principal terrain d&#x27;affrontement et les agents IA sont à traiter comme des acteurs internes dont il faut encadrer le comportement.</p>
+        <span class="text-[11px] text-accent mt-auto font-mono">Lire l'article →</span>
+      </div>
+    </a>
+
+    <a href="https://www.it-connect.fr/windows-11-26h2-quels-sont-les-nouveaux-parametres-de-gpo/" target="_blank" rel="noopener" class="veille-card veille-extra group border border-hairline bg-panel rounded-sm overflow-hidden hover:border-accent/50 transition-colors flex flex-col">
+      <div class="aspect-video bg-panel2 overflow-hidden">
+        <img src="https://www.it-connect.fr/wp-content-itc/uploads/2026/10/windows-11-26h2-gpo-admx-390x205.jpg.webp" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+             onerror="this.closest('a').querySelector('.thumb-fallback').classList.remove('hidden'); this.remove();">
+        <div class="thumb-fallback hidden w-full h-full items-center justify-center text-accent"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg></div>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <span class="text-[11px] font-mono text-muted mb-2">IT-Connect · 12/10/2026</span>
+        <h4 class="text-sm font-semibold text-ink mb-2 leading-snug group-hover:text-accent transition-colors">Windows 11 26H2 : quels sont les nouveaux paramètres de GPO ?</h4>
+        <p class="text-muted text-xs leading-relaxed mb-3">32 nouveaux paramètres de GPO arrivent, couvrant notamment les agents IA et MCP, le blocage du NTLM, BitLocker et Defender.</p>
+        <span class="text-[11px] text-accent mt-auto font-mono">Lire l'article →</span>
+      </div>
+    </a>
+  </div>
+  <div class="flex justify-center mt-6">
+    <button type="button" data-veille-toggle="veille-ai" class="font-mono text-xs text-accent border border-hairline hover:border-accent/50 px-4 py-2 rounded-sm transition-colors">
+      Voir plus d'articles (+3)
+    </button>
+  </div>
+
+  <div class="flex items-center justify-between mt-16 mb-6">
+    <h3 class="text-lg font-semibold text-ink">Cybersécurité : phishing, ransomwares &amp; réseaux</h3>
+    <span class="text-xs font-mono text-accent">Axe 02</span>
+  </div>
+  <div id="veille-cyber" class="veille-grid grid grid-cols-1 md:grid-cols-3 gap-6">
+    <a href="https://www.it-connect.fr/cyberattaque-supermarches-froid-danfoss/" target="_blank" rel="noopener" class="veille-card group border border-hairline bg-panel rounded-sm overflow-hidden hover:border-accent/50 transition-colors flex flex-col">
+      <div class="aspect-video bg-panel2 overflow-hidden">
+        <img src="https://www.it-connect.fr/wp-content-itc/uploads/2026/10/cyberattaque-danfoss-octobre-2026.jpg.webp" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+             onerror="this.closest('a').querySelector('.thumb-fallback').classList.remove('hidden'); this.remove();">
+        <div class="thumb-fallback hidden w-full h-full items-center justify-center text-accent"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg></div>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <span class="text-[11px] font-mono text-muted mb-2">IT-Connect · 12/10/2026</span>
+        <h4 class="text-sm font-semibold text-ink mb-2 leading-snug group-hover:text-accent transition-colors">Super U, Intermarché : des pirates font chauffer les congélateurs à 50 °C</h4>
+        <p class="text-muted text-xs leading-relaxed mb-3">Une cyberattaque visant les systèmes de froid Danfoss a déréglé des congélateurs de magasins, entraînant la perte de rayons entiers de produits.</p>
+        <span class="text-[11px] text-accent mt-auto font-mono">Lire l'article →</span>
+      </div>
+    </a>
+
+    <a href="https://www.it-connect.fr/fakegit-depots-github-smartloader-stealc/" target="_blank" rel="noopener" class="veille-card group border border-hairline bg-panel rounded-sm overflow-hidden hover:border-accent/50 transition-colors flex flex-col">
+      <div class="aspect-video bg-panel2 overflow-hidden">
+        <img src="https://www.it-connect.fr/wp-content-itc/uploads/2026/10/campagne-fakegit-octobre-2026.jpg.webp" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+             onerror="this.closest('a').querySelector('.thumb-fallback').classList.remove('hidden'); this.remove();">
+        <div class="thumb-fallback hidden w-full h-full items-center justify-center text-accent"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg></div>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <span class="text-[11px] font-mono text-muted mb-2">IT-Connect · 09/10/2026</span>
+        <h4 class="text-sm font-semibold text-ink mb-2 leading-snug group-hover:text-accent transition-colors">FakeGit : 17 610 dépôts GitHub piégés pour diffuser SmartLoader</h4>
+        <p class="text-muted text-xs leading-relaxed mb-3">La campagne FakeGit revient avec des milliers de dépôts GitHub piégés, dont une grande partie réactivée en moins de deux jours, pour installer un malware voleur d&#x27;informations.</p>
+        <span class="text-[11px] text-accent mt-auto font-mono">Lire l'article →</span>
+      </div>
+    </a>
+
+    <a href="https://www.it-connect.fr/rapport-anssi-cyberattaque-dgfip/" target="_blank" rel="noopener" class="veille-card group border border-hairline bg-panel rounded-sm overflow-hidden hover:border-accent/50 transition-colors flex flex-col">
+      <div class="aspect-video bg-panel2 overflow-hidden">
+        <img src="https://www.it-connect.fr/wp-content-itc/uploads/2026/09/anssi-rapport-incident-cyberattaques-dgfip.jpg.webp" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+             onerror="this.closest('a').querySelector('.thumb-fallback').classList.remove('hidden'); this.remove();">
+        <div class="thumb-fallback hidden w-full h-full items-center justify-center text-accent"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg></div>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <span class="text-[11px] font-mono text-muted mb-2">IT-Connect · 30/09/2026</span>
+        <h4 class="text-sm font-semibold text-ink mb-2 leading-snug group-hover:text-accent transition-colors">Cyberattaque DGFiP de l&#x27;été 2026 : ce que révèle le rapport de l&#x27;ANSSI</h4>
+        <p class="text-muted text-xs leading-relaxed mb-3">Le rapport pointe des identifiants dérobés par des infostealers, l&#x27;absence d&#x27;authentification multifacteur et des exfiltrations de données restées longtemps non détectées.</p>
+        <span class="text-[11px] text-accent mt-auto font-mono">Lire l'article →</span>
+      </div>
+    </a>
+
+    <a href="https://www.it-connect.fr/exchange-server-cve-2026-96940/" target="_blank" rel="noopener" class="veille-card group border border-hairline bg-panel rounded-sm overflow-hidden hover:border-accent/50 transition-colors flex flex-col">
+      <div class="aspect-video bg-panel2 overflow-hidden">
+        <img src="https://www.it-connect.fr/wp-content-itc/uploads/2026/10/exchange-server-patch-CVE-2026-96940.jpg.webp" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+             onerror="this.closest('a').querySelector('.thumb-fallback').classList.remove('hidden'); this.remove();">
+        <div class="thumb-fallback hidden w-full h-full items-center justify-center text-accent"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg></div>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <span class="text-[11px] font-mono text-muted mb-2">IT-Connect · 07/10/2026</span>
+        <h4 class="text-sm font-semibold text-ink mb-2 leading-snug group-hover:text-accent transition-colors">Exchange Server : la faille CVE-2026-96940 expose les boîtes aux lettres</h4>
+        <p class="text-muted text-xs leading-relaxed mb-3">Un utilisateur authentifié peut lire les e-mails de ses collègues. Un correctif est disponible et doit être appliqué par les administrateurs.</p>
+        <span class="text-[11px] text-accent mt-auto font-mono">Lire l'article →</span>
+      </div>
+    </a>
+
+    <a href="https://www.it-connect.fr/glpi-11-0-10-10-0-28-failles-fin-glpi-10/" target="_blank" rel="noopener" class="veille-card group border border-hairline bg-panel rounded-sm overflow-hidden hover:border-accent/50 transition-colors flex flex-col">
+      <div class="aspect-video bg-panel2 overflow-hidden">
+        <img src="https://www.it-connect.fr/wp-content-itc/uploads/2026/10/GLPI-11.0.11-et-GLPI-10.0.28-patchs-de-securite.jpg.webp" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+             onerror="this.closest('a').querySelector('.thumb-fallback').classList.remove('hidden'); this.remove();">
+        <div class="thumb-fallback hidden w-full h-full items-center justify-center text-accent"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg></div>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <span class="text-[11px] font-mono text-muted mb-2">IT-Connect · 02/10/2026</span>
+        <h4 class="text-sm font-semibold text-ink mb-2 leading-snug group-hover:text-accent transition-colors">GLPI 11.0.11 et 10.0.28 : 8 failles patchées, fin annoncée de GLPI 10</h4>
+        <p class="text-muted text-xs leading-relaxed mb-3">Huit failles sont corrigées, dont une injection SQL, et l&#x27;éditeur indique que la version 10.0.28 sera la dernière de sa branche.</p>
+        <span class="text-[11px] text-accent mt-auto font-mono">Lire l'article →</span>
+      </div>
+    </a>
+
+    <a href="https://www.it-connect.fr/dell-system-update-faille-critique-cve-2026-86360/" target="_blank" rel="noopener" class="veille-card group border border-hairline bg-panel rounded-sm overflow-hidden hover:border-accent/50 transition-colors flex flex-col">
+      <div class="aspect-video bg-panel2 overflow-hidden">
+        <img src="https://www.it-connect.fr/wp-content-itc/uploads/2026/10/Dell-PowerEdge-CVE-2026-86360.jpg.webp" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+             onerror="this.closest('a').querySelector('.thumb-fallback').classList.remove('hidden'); this.remove();">
+        <div class="thumb-fallback hidden w-full h-full items-center justify-center text-warn"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg></div>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <span class="text-[11px] font-mono text-muted mb-2">IT-Connect · 06/10/2026</span>
+        <h4 class="text-sm font-semibold text-ink mb-2 leading-snug group-hover:text-accent transition-colors">Dell PowerEdge : une faille critique permet une exécution de code en root</h4>
+        <p class="text-muted text-xs leading-relaxed mb-3">Dell corrige cinq failles dans son outil de mise à jour, dont une critique (9,6/10) touchant les serveurs PowerEdge.</p>
+        <span class="text-[11px] text-accent mt-auto font-mono">Lire l'article →</span>
+      </div>
+    </a>
+
+    <a href="https://www.it-connect.fr/teamviewer-5-failles-securite-version-15-82/" target="_blank" rel="noopener" class="veille-card veille-extra group border border-hairline bg-panel rounded-sm overflow-hidden hover:border-accent/50 transition-colors flex flex-col">
+      <div class="aspect-video bg-panel2 overflow-hidden">
+        <img src="https://www.it-connect.fr/wp-content-itc/uploads/2026/10/teamviewer-5-failles-de-securite-2026.jpg.webp" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+             onerror="this.closest('a').querySelector('.thumb-fallback').classList.remove('hidden'); this.remove();">
+        <div class="thumb-fallback hidden w-full h-full items-center justify-center text-accent"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg></div>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <span class="text-[11px] font-mono text-muted mb-2">IT-Connect · 02/10/2026</span>
+        <h4 class="text-sm font-semibold text-ink mb-2 leading-snug group-hover:text-accent transition-colors">TeamViewer a corrigé 5 failles, dont une exploitable à distance</h4>
+        <p class="text-muted text-xs leading-relaxed mb-3">Cinq failles sont corrigées dans les clients Windows, Linux et macOS, dont une exploitable à distance (score CVSS de 8,8 sur 10).</p>
+        <span class="text-[11px] text-accent mt-auto font-mono">Lire l'article →</span>
+      </div>
+    </a>
+
+    <a href="https://www.it-connect.fr/anssi-dinum-fuite-donnees-metabase/" target="_blank" rel="noopener" class="veille-card veille-extra group border border-hairline bg-panel rounded-sm overflow-hidden hover:border-accent/50 transition-colors flex flex-col">
+      <div class="aspect-video bg-panel2 overflow-hidden">
+        <img src="https://www.it-connect.fr/wp-content-itc/uploads/2026/10/fuite-de-donnees-anssi-et-dinum-faille-metabase.jpg.webp" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+             onerror="this.closest('a').querySelector('.thumb-fallback').classList.remove('hidden'); this.remove();">
+        <div class="thumb-fallback hidden w-full h-full items-center justify-center text-accent"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg></div>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <span class="text-[11px] font-mono text-muted mb-2">IT-Connect · 01/10/2026</span>
+        <h4 class="text-sm font-semibold text-ink mb-2 leading-snug group-hover:text-accent transition-colors">Faille Metabase : l’ANSSI et la DINUM victimes d’une fuite de données</h4>
+        <p class="text-muted text-xs leading-relaxed mb-3">Une faille dans Metabase a permis de compromettre 118 comptes du laboratoire d&#x27;innovation de l&#x27;ANSSI et deux instances de la DINUM.</p>
+        <span class="text-[11px] text-accent mt-auto font-mono">Lire l'article →</span>
+      </div>
+    </a>
+
+    <a href="https://www.it-connect.fr/spectre-v2-btr-linux-hash-mot-de-passe-root/" target="_blank" rel="noopener" class="veille-card veille-extra group border border-hairline bg-panel rounded-sm overflow-hidden hover:border-accent/50 transition-colors flex flex-col">
+      <div class="aspect-video bg-panel2 overflow-hidden">
+        <img src="https://www.it-connect.fr/wp-content-itc/uploads/2026/09/Attaque-BTR-variante-Spectre-V2-Linux.jpg.webp" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+             onerror="this.closest('a').querySelector('.thumb-fallback').classList.remove('hidden'); this.remove();">
+        <div class="thumb-fallback hidden w-full h-full items-center justify-center text-accent"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg></div>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <span class="text-[11px] font-mono text-muted mb-2">IT-Connect · 30/09/2026</span>
+        <h4 class="text-sm font-semibold text-ink mb-2 leading-snug group-hover:text-accent transition-colors">BTR, une variante de Spectre v2, vole le hash du mot de passe root sous Linux</h4>
+        <p class="text-muted text-xs leading-relaxed mb-3">Cette nouvelle attaque vise les moteurs JIT et permet de récupérer le hash du mot de passe root en trois à cinq minutes.</p>
+        <span class="text-[11px] text-accent mt-auto font-mono">Lire l'article →</span>
+      </div>
+    </a>
+
+    <a href="https://www.it-connect.fr/apple-cve-2026-86950-faille-zero-day-coregraphics/" target="_blank" rel="noopener" class="veille-card veille-extra group border border-hairline bg-panel rounded-sm overflow-hidden hover:border-accent/50 transition-colors flex flex-col">
+      <div class="aspect-video bg-panel2 overflow-hidden">
+        <img src="https://www.it-connect.fr/wp-content-itc/uploads/2026/09/iphone-CVE-2026-86950-septembre-2026.jpg.webp" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+             onerror="this.closest('a').querySelector('.thumb-fallback').classList.remove('hidden'); this.remove();">
+        <div class="thumb-fallback hidden w-full h-full items-center justify-center text-accent"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg></div>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <span class="text-[11px] font-mono text-muted mb-2">IT-Connect · 30/09/2026</span>
+        <h4 class="text-sm font-semibold text-ink mb-2 leading-snug group-hover:text-accent transition-colors">Apple corrige une faille CoreGraphics exploitée contre des iPhone</h4>
+        <p class="text-muted text-xs leading-relaxed mb-3">La CVE-2026-86950, une faille zero-day possiblement exploitée contre des utilisateurs ciblés, impose d&#x27;installer rapidement les mises à jour.</p>
+        <span class="text-[11px] text-accent mt-auto font-mono">Lire l'article →</span>
+      </div>
+    </a>
+  </div>
+  <div class="flex justify-center mt-6">
+    <button type="button" data-veille-toggle="veille-cyber" class="font-mono text-xs text-accent border border-hairline hover:border-accent/50 px-4 py-2 rounded-sm transition-colors">
+      Voir plus d'articles (+3)
+    </button>
+  </div>
+
+  <div class="flex items-center justify-between mt-16 mb-6">
+    <h3 class="text-lg font-semibold text-ink">Réseaux, systèmes &amp; infrastructures</h3>
+    <span class="text-xs font-mono text-accent">Axe 03</span>
+  </div>
+  <div id="veille-net" class="veille-grid grid grid-cols-1 md:grid-cols-3 gap-6">
+    <a href="https://www.it-connect.fr/windows-update-certificats-expiration-2027/" target="_blank" rel="noopener" class="veille-card group border border-hairline bg-panel rounded-sm overflow-hidden hover:border-accent/50 transition-colors flex flex-col">
+      <div class="aspect-video bg-panel2 overflow-hidden">
+        <img src="https://www.it-connect.fr/wp-content-itc/uploads/2026/10/Windows-Update-certains-PC-et-serveurs-seront-prives-de-mises-a-jour-en-2027-a-cause-de-certificats-expires-130x90.jpg.webp" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+             onerror="this.closest('a').querySelector('.thumb-fallback').classList.remove('hidden'); this.remove();">
+        <div class="thumb-fallback hidden w-full h-full items-center justify-center text-accent"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z"/></svg></div>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <span class="text-[11px] font-mono text-muted mb-2">IT-Connect · 12/10/2026</span>
+        <h4 class="text-sm font-semibold text-ink mb-2 leading-snug group-hover:text-accent transition-colors">Windows Update : des PC et serveurs privés de mises à jour en 2027</h4>
+        <p class="text-muted text-xs leading-relaxed mb-3">Des certificats qui arrivent à expiration pourraient empêcher certains PC et serveurs Windows de recevoir leurs mises à jour en 2027.</p>
+        <span class="text-[11px] text-accent mt-auto font-mono">Lire l'article →</span>
+      </div>
+    </a>
+
+    <a href="https://www.it-connect.fr/machine-cafe-keurig-1-to-donnees-10-jours/" target="_blank" rel="noopener" class="veille-card group border border-hairline bg-panel rounded-sm overflow-hidden hover:border-accent/50 transition-colors flex flex-col">
+      <div class="aspect-video bg-panel2 overflow-hidden">
+        <img src="https://www.it-connect.fr/wp-content-itc/uploads/2026/10/Une-machine-a-cafe-connectee-envoie-plus-de-1-To-de-donnees-en-10-jours-sur-le-Wi-Fi-130x90.jpg.webp" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+             onerror="this.closest('a').querySelector('.thumb-fallback').classList.remove('hidden'); this.remove();">
+        <div class="thumb-fallback hidden w-full h-full items-center justify-center text-accent"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z"/></svg></div>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <span class="text-[11px] font-mono text-muted mb-2">IT-Connect · 12/10/2026</span>
+        <h4 class="text-sm font-semibold text-ink mb-2 leading-snug group-hover:text-accent transition-colors">Une machine à café connectée envoie plus de 1 To de données en 10 jours</h4>
+        <p class="text-muted text-xs leading-relaxed mb-3">Une machine à café connectée a émis plus d&#x27;un téraoctet de données en dix jours sur un réseau Wi-Fi.</p>
+        <span class="text-[11px] text-accent mt-auto font-mono">Lire l'article →</span>
+      </div>
+    </a>
+
+    <a href="https://www.it-connect.fr/tuto-conteneurs-wsl-wslc-windows/" target="_blank" rel="noopener" class="veille-card group border border-hairline bg-panel rounded-sm overflow-hidden hover:border-accent/50 transition-colors flex flex-col">
+      <div class="aspect-video bg-panel2 overflow-hidden">
+        <img src="https://www.it-connect.fr/wp-content-itc/uploads/2026/10/tuto-wsl-containers-130x90.jpg.webp" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+             onerror="this.closest('a').querySelector('.thumb-fallback').classList.remove('hidden'); this.remove();">
+        <div class="thumb-fallback hidden w-full h-full items-center justify-center text-accent"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z"/></svg></div>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <span class="text-[11px] font-mono text-muted mb-2">IT-Connect · 08/10/2026</span>
+        <h4 class="text-sm font-semibold text-ink mb-2 leading-snug group-hover:text-accent transition-colors">Conteneurs WSL : bien débuter avec wslc</h4>
+        <p class="text-muted text-xs leading-relaxed mb-3">Un guide pour démarrer avec wslc et exécuter des conteneurs Linux directement sur Windows.</p>
+        <span class="text-[11px] text-accent mt-auto font-mono">Lire l'article →</span>
+      </div>
+    </a>
+
+    <a href="https://tynmagazine.com/?p=238772" target="_blank" rel="noopener" class="veille-card group border border-hairline bg-panel rounded-sm overflow-hidden hover:border-accent/50 transition-colors flex flex-col">
+      <div class="aspect-video bg-panel2 flex items-center justify-center text-accent"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z"/></svg></div>
+      <div class="p-5 flex flex-col flex-1">
+        <span class="text-[11px] font-mono text-muted mb-2">TYN Magazine · étude Dell&#x27;Oro 2026</span>
+        <h4 class="text-sm font-semibold text-ink mb-2 leading-snug group-hover:text-accent transition-colors">Wi-Fi 7 : Cisco prend la tête, mais la pénurie de mémoire pèse sur le marché</h4>
+        <p class="text-muted text-xs leading-relaxed mb-3">Selon Dell&#x27;Oro, Cisco passe en tête des ventes de points d&#x27;accès intérieurs Wi-Fi 7, devant Huawei, alors que la pénurie de mémoire pourrait freiner la croissance.</p>
+        <span class="text-[11px] text-accent mt-auto font-mono">Lire l'article →</span>
+      </div>
+    </a>
+
+    <a href="https://kx.cloudingenium.com/en/opnsense-vs-pfsense-firewall-comparison/" target="_blank" rel="noopener" class="veille-card group border border-hairline bg-panel rounded-sm overflow-hidden hover:border-accent/50 transition-colors flex flex-col">
+      <div class="aspect-video bg-panel2 flex items-center justify-center text-accent"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z"/></svg></div>
+      <div class="p-5 flex flex-col flex-1">
+        <span class="text-[11px] font-mono text-muted mb-2">CloudIngenium · comparatif 2026</span>
+        <h4 class="text-sm font-semibold text-ink mb-2 leading-snug group-hover:text-accent transition-colors">OPNsense ou pfSense en 2026 : lequel choisir ?</h4>
+        <p class="text-muted text-xs leading-relaxed mb-3">Comparaison des deux pare-feu BSD : interface, rythme de mises à jour, écosystème de plugins et intégration de WireGuard.</p>
+        <span class="text-[11px] text-accent mt-auto font-mono">Lire l'article →</span>
+      </div>
+    </a>
+
+    <a href="https://www.it-connect.fr/comment-creer-des-vlans-avec-proxmox-et-pfsense/" target="_blank" rel="noopener" class="veille-card group border border-hairline bg-panel rounded-sm overflow-hidden hover:border-accent/50 transition-colors flex flex-col">
+      <div class="aspect-video bg-panel2 flex items-center justify-center text-accent"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z"/></svg></div>
+      <div class="p-5 flex flex-col flex-1">
+        <span class="text-[11px] font-mono text-muted mb-2">IT-Connect · tutoriel</span>
+        <h4 class="text-sm font-semibold text-ink mb-2 leading-snug group-hover:text-accent transition-colors">Comment créer des VLANs avec Proxmox et pfSense ?</h4>
+        <p class="text-muted text-xs leading-relaxed mb-3">Tutoriel pas à pas pour utiliser des VLANs avec un pare-feu pfSense virtualisé sur un serveur Proxmox.</p>
+        <span class="text-[11px] text-accent mt-auto font-mono">Lire l'article →</span>
+      </div>
+    </a>
+
+    <a href="https://www.lemondeinformatique.fr/actualites/lire-le-wifi-7-debarque-sur-les-routeurs-juniper-94785.html" target="_blank" rel="noopener" class="veille-card veille-extra group border border-hairline bg-panel rounded-sm overflow-hidden hover:border-accent/50 transition-colors flex flex-col">
+      <div class="aspect-video bg-panel2 flex items-center justify-center text-accent"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z"/></svg></div>
+      <div class="p-5 flex flex-col flex-1">
+        <span class="text-[11px] font-mono text-muted mb-2">Le Monde Informatique</span>
+        <h4 class="text-sm font-semibold text-ink mb-2 leading-snug group-hover:text-accent transition-colors">Le Wi-Fi 7 débarque chez Juniper</h4>
+        <p class="text-muted text-xs leading-relaxed mb-3">Juniper lance des commutateurs et points d&#x27;accès compatibles Wi-Fi 6E et Wi-Fi 7, gérés depuis son cloud Mist.</p>
+        <span class="text-[11px] text-accent mt-auto font-mono">Lire l'article →</span>
+      </div>
+    </a>
+
+    <a href="https://www.it-connect.fr/chapitres/hyper-v-installer-le-firewall-opnsense-creer-un-lab-virtuel/" target="_blank" rel="noopener" class="veille-card veille-extra group border border-hairline bg-panel rounded-sm overflow-hidden hover:border-accent/50 transition-colors flex flex-col">
+      <div class="aspect-video bg-panel2 overflow-hidden">
+        <img src="https://www.it-connect.fr/wp-content-itc/uploads/2024/07/Lab-Hyper-V-avec-OPNsense.jpg.webp" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+             onerror="this.closest('a').querySelector('.thumb-fallback').classList.remove('hidden'); this.remove();">
+        <div class="thumb-fallback hidden w-full h-full items-center justify-center text-accent"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z"/></svg></div>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <span class="text-[11px] font-mono text-muted mb-2">IT-Connect · tutoriel</span>
+        <h4 class="text-sm font-semibold text-ink mb-2 leading-snug group-hover:text-accent transition-colors">Installer OPNsense sur Hyper-V pour créer un lab virtuel</h4>
+        <p class="text-muted text-xs leading-relaxed mb-3">Guide d&#x27;installation du pare-feu OPNsense dans une machine virtuelle Hyper-V pour monter un lab réseau.</p>
+        <span class="text-[11px] text-accent mt-auto font-mono">Lire l'article →</span>
+      </div>
+    </a>
+  </div>
+  <div class="flex justify-center mt-6">
+    <button type="button" data-veille-toggle="veille-net" class="font-mono text-xs text-accent border border-hairline hover:border-accent/50 px-4 py-2 rounded-sm transition-colors">
+      Voir plus d'articles (+2)
+    </button>
+  </div>
+
+  <div class="pt-10 font-mono text-xs">
+    <p class="text-muted mb-2">Autres flux suivis</p>
+    <div class="flex flex-wrap gap-3">
+      <a href="https://www.cert.ssi.gouv.fr/" target="_blank" rel="noopener" class="text-accent hover:underline">CERT-FR</a>
+      <a href="https://www.lemondeinformatique.fr/actualites/lire-securite-118.html" target="_blank" rel="noopener" class="text-accent hover:underline">Le Monde Informatique</a>
+      <a href="https://www.it-connect.fr/actualites/actu-securite/" target="_blank" rel="noopener" class="text-accent hover:underline">IT-Connect</a>
+      <a href="https://www.usine-digitale.fr/intelligence-artificielle/" target="_blank" rel="noopener" class="text-accent hover:underline">L'Usine Digitale (IA)</a>
+      <a href="https://www.silicon.fr/intelligence-artificielle" target="_blank" rel="noopener" class="text-accent hover:underline">Silicon.fr</a>
     </div>
   </div>
 </section>
@@ -754,6 +1084,17 @@
   if (lastUpdatedEl) {
     lastUpdatedEl.textContent = new Intl.DateTimeFormat('fr-FR', { month: 'long', year: 'numeric' }).format(new Date('2026-09-16'));
   }
+
+
+  // Bouton "Voir plus d'articles" (veille)
+  document.querySelectorAll('[data-veille-toggle]').forEach(function (btn) {
+    var grid = document.getElementById(btn.getAttribute('data-veille-toggle'));
+    var extra = grid ? grid.querySelectorAll('.veille-extra').length : 0;
+    btn.addEventListener('click', function () {
+      var open = grid.classList.toggle('expanded');
+      btn.textContent = open ? 'Voir moins' : 'Voir plus d\'articles (+' + extra + ')';
+    });
+  });
 
   // Popup de prévisualisation des certifications
   var certModal = document.getElementById('cert-modal');
